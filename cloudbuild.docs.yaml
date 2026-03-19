@@ -1,0 +1,27 @@
+steps:
+  # ======================================================
+  # STEP 1: BUILD MKDOCS SITE (STRICT VALIDATION)
+  # ======================================================
+  - name: 'python:3.11-slim'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        pip install uv
+        uv sync
+        uv run mkdocs build --strict
+
+  # ======================================================
+  # STEP 2: DEPLOY TO GCS STATIC HOSTING BUCKET
+  # ======================================================
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gsutil -m rsync -r -d site/ gs://${PROJECT_ID}-docs/
+
+timeout: '300s'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

@@ -1,0 +1,1304 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Interoperable Medical Records Platform for Migrant Children and Adolescents.">
+      
+      
+      
+        <link rel="canonical" href="https://guanes.github.io/health-without-borders/architecture/hl7-mapping/">
+      
+      
+        <link rel="prev" href="../ai-integration/">
+      
+      
+        <link rel="next" href="../../development/setup/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>HL7v2 Mapping - Health Without Borders - API Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hl7v2-data-mapping-and-exchange-logic" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Health Without Borders - API Docs" class="md-header__button md-logo" aria-label="Health Without Borders - API Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Health Without Borders - API Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              HL7v2 Mapping
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/guanes/health-without-borders" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    guanes/health-without-borders
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../hl7v2-strategy/" class="md-tabs__link">
+          
+  
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/setup/" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../infrastructure/database/" class="md-tabs__link">
+          
+  
+  
+  Infrastructure and Security
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Health Without Borders - API Docs" class="md-nav__button md-logo" aria-label="Health Without Borders - API Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Health Without Borders - API Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/guanes/health-without-borders" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    guanes/health-without-borders
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hl7v2-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HL7v2 Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & NLP Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HL7v2 Mapping
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HL7v2 Mapping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hl7v2-data-dictionary-field-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HL7v2 Data Dictionary &amp; Field Mapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HL7v2 Data Dictionary &amp; Field Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-pid-segment-patient-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. PID Segment (Patient Identification)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-nk1-segment-next-of-kin-associated-parties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. NK1 Segment (Next of Kin / Associated Parties)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pv1-segment-patient-visit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PV1 Segment (Patient Visit)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-dg1-segment-diagnosis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. DG1 Segment (Diagnosis)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-obx-segment-observationresult-vitals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. OBX Segment (Observation/Result - Vitals)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-rxa-segment-pharmacytreatment-administration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. RXA Segment (Pharmacy/Treatment Administration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-al1-segment-patient-allergy-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. AL1 Segment (Patient Allergy Information)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-mapping-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Mapping Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exchange-logic-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exchange Logic Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/qa-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QA & PR Workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure and Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infrastructure and Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/gcp-deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GCP Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/healthcare-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Healthcare API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Protocols
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hl7v2-data-dictionary-field-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HL7v2 Data Dictionary &amp; Field Mapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HL7v2 Data Dictionary &amp; Field Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-pid-segment-patient-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. PID Segment (Patient Identification)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-nk1-segment-next-of-kin-associated-parties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. NK1 Segment (Next of Kin / Associated Parties)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pv1-segment-patient-visit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PV1 Segment (Patient Visit)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-dg1-segment-diagnosis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. DG1 Segment (Diagnosis)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-obx-segment-observationresult-vitals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. OBX Segment (Observation/Result - Vitals)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-rxa-segment-pharmacytreatment-administration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. RXA Segment (Pharmacy/Treatment Administration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-al1-segment-patient-allergy-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. AL1 Segment (Patient Allergy Information)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-mapping-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Mapping Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exchange-logic-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exchange Logic Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="hl7v2-data-mapping-and-exchange-logic">HL7v2 Data Mapping and Exchange Logic</h1>
+<p>This document details the architectural data mapping between our internal JSON structures (originating from the offline-first mobile app) and the international HL7v2 standard segments. </p>
+<p>The transformation is handled strictly by the <code>hl7_service.py</code> component before transmission to the Google Cloud Healthcare API.</p>
+<h2 id="hl7v2-data-dictionary-field-mapping">HL7v2 Data Dictionary &amp; Field Mapping</h2>
+<h3 id="1-pid-segment-patient-identification">1. PID Segment (Patient Identification)</h3>
+<p>Maps core demographic information.
+* <strong>PID-3 (Patient Identifier List):</strong> Mapped directly to our internal <code>patientId</code> (UUID).
+* <strong>PID-5 (Patient Name):</strong> * <code>PID-5.1</code>: Family Name (<code>patientInfo.lastName</code>)
+  * <code>PID-5.2</code>: Given Name (<code>patientInfo.firstName</code>)
+* <strong>PID-7 (Date/Time of Birth):</strong> Formatted as YYYYMMDD from <code>patientInfo.dob</code>.
+* <strong>PID-8 (Administrative Sex):</strong> Mapped from <code>patientInfo.gender</code> (M, F, U).
+* <strong>PID-11 (Patient Address):</strong>
+  * <code>PID-11.1</code>: Street Address (<code>patientInfo.address.street</code>)
+  * <code>PID-11.3</code>: City (<code>patientInfo.address.city</code>)
+  * <code>PID-11.4</code>: State or Province (<code>patientInfo.address.state</code>)
+  * <code>PID-11.5</code>: Zip or Postal Code (<code>patientInfo.address.zipCode</code>)
+  * <code>PID-11.6</code>: Country (<code>patientInfo.address.country</code>)</p>
+<h3 id="2-nk1-segment-next-of-kin-associated-parties">2. NK1 Segment (Next of Kin / Associated Parties)</h3>
+<p>Maps the legal guardian information, crucial for pediatric patients.
+* <strong>NK1-2 (Name):</strong> Guardian's full name (<code>guardianInfo.name</code>).
+* <strong>NK1-3 (Relationship):</strong> E.g., Mother, Father, Aunt (<code>guardianInfo.relationship</code>).
+* <strong>NK1-5 (Phone Number):</strong> Contact number (<code>guardianInfo.phone</code>).</p>
+<h3 id="3-pv1-segment-patient-visit">3. PV1 Segment (Patient Visit)</h3>
+<p>Maps the episodic data of the medical encounter.
+* <strong>PV1-3 (Assigned Patient Location):</strong> Where the encounter took place (<code>medicalHistory[].location</code>).
+* <strong>PV1-7 (Attending Doctor):</strong> Name of the physician (<code>medicalHistory[].physician</code>).
+* <strong>PV1-44 (Admit Date/Time):</strong> Date of the consultation (<code>medicalHistory[].date</code>).</p>
+<h3 id="4-dg1-segment-diagnosis">4. DG1 Segment (Diagnosis)</h3>
+<p>Maps the clinical diagnoses extracted via NLP or manual input.
+* <strong>DG1-3 (Diagnosis Code - ICD-10):</strong>
+  * <code>DG1-3.1</code>: The actual ICD-10 Code (<code>diagnosis[].icd10Code</code>).
+  * <code>DG1-3.2</code>: Text description of the diagnosis (<code>diagnosis[].description</code>).
+* <strong>DG1-6 (Diagnosis Type):</strong> Hardcoded to "F" for Final diagnosis.</p>
+<h3 id="5-obx-segment-observationresult-vitals">5. OBX Segment (Observation/Result - Vitals)</h3>
+<p>Used generically to map physical measurements.
+* <strong>OBX-3 (Observation Identifier):</strong> Uses international LOINC codes (e.g., <code>29463-7</code> for Weight, <code>8302-2</code> for Height).
+* <strong>OBX-5 (Observation Value):</strong> The float value (<code>patientInfo.weight</code> or <code>patientInfo.height</code>).
+* <strong>OBX-6 (Units):</strong> "kg" for weight, "cm" for height.</p>
+<h3 id="6-rxa-segment-pharmacytreatment-administration">6. RXA Segment (Pharmacy/Treatment Administration)</h3>
+<p>Maps the vaccination history.
+* <strong>RXA-3 &amp; RXA-4 (Date/Time Start &amp; End):</strong> Date the vaccine was administered (<code>vaccinationRecord[].date</code>).
+* <strong>RXA-5 (Administered Code):</strong> Uses CVX codes (<code>vaccineCode</code>) and the vaccine's text name (<code>vaccineName</code>).
+* <strong>RXA-6 (Administered Amount):</strong> Number of doses (<code>vaccinationRecord[].dose</code>).
+* <strong>RXA-10 (Administering Provider):</strong> Who applied the vaccine (<code>vaccinationRecord[].administratedBy</code>).</p>
+<h3 id="7-al1-segment-patient-allergy-information">7. AL1 Segment (Patient Allergy Information)</h3>
+<p>Maps known allergies and adverse reactions.
+* <strong>AL1-3 (Allergen Code/Description):</strong> General description of the allergen (<code>allergies[].allergen</code>).
+* <strong>AL1-5 (Allergy Reaction):</strong> The clinical manifestation (e.g., "Habones", "Choque anafiláctico") mapped from the <code>AllergyReactionEnum</code> (<code>allergies[].reaction</code>).</p>
+<h2 id="data-mapping-architecture">Data Mapping Architecture</h2>
+<pre class="mermaid"><code>flowchart LR
+    %% Definición de estilos
+    classDef json fill:#1e1e1e,stroke:#00bcd4,stroke-width:2px,color:#fff
+    classDef engine fill:#37474f,stroke:#ff9800,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+    classDef hl7 fill:#1e1e1e,stroke:#4caf50,stroke-width:2px,color:#fff
+
+    subgraph Origin ["📱 Incoming JSON"]
+        id["`patientId&lt;br/&gt;(UUID)`"]:::json
+        demo["`patientInfo&lt;br/&gt;(Name, DOB, Address)`"]:::json
+        guard["`guardianInfo&lt;br/&gt;(Name, Phone, Rel)`"]:::json
+        visit["`medicalHistory[]&lt;br/&gt;(Date, Physician)`"]:::json
+        diag["`diagnosis[]&lt;br/&gt;(ICD-10, Desc)`"]:::json
+        vitals["`weight / height&lt;br/&gt;(Floats)`"]:::json
+        vac["`vaccinationRecord[]&lt;br/&gt;(CVX, Dose)`"]:::json
+        all["`allergies[]&lt;br/&gt;(Allergen, Reaction)`"]:::json
+    end
+
+    subgraph Engine ["⚙️ hl7_service.py Mapping"]
+        m_id["PID-3"]:::engine
+        m_demo["PID-5, 7, 8, 11"]:::engine
+        m_guard["NK1-2, 3, 5"]:::engine
+        m_visit["PV1-3, 7, 44"]:::engine
+        m_diag["DG1-3.1, 3.2"]:::engine
+        m_vitals["OBX-3, OBX-5"]:::engine
+        m_vac["RXA-3, 5, 6"]:::engine
+        m_all["AL1-3, AL1-5"]:::engine
+    end
+
+    subgraph Dest ["🏥 Outgoing HL7v2"]
+        MSH["`MSH&lt;br/&gt;(Message Header)`"]:::hl7
+        PID["`PID&lt;br/&gt;(Patient ID)`"]:::hl7
+        NK1["`NK1&lt;br/&gt;(Next of Kin)`"]:::hl7
+        PV1["`PV1&lt;br/&gt;(Patient Visit)`"]:::hl7
+        DG1["`DG1&lt;br/&gt;(Diagnosis)`"]:::hl7
+        OBX["`OBX&lt;br/&gt;(Vitals)`"]:::hl7
+        RXA["`RXA&lt;br/&gt;(Vaccine)`"]:::hl7
+        AL1["`AL1&lt;br/&gt;(Allergy)`"]:::hl7
+    end
+
+    %% Conexiones directas que auto-organizan las columnas
+    id --&gt; m_id --&gt; PID
+    demo --&gt; m_demo --&gt; PID
+    guard --&gt; m_guard --&gt; NK1
+    visit --&gt; m_visit --&gt; PV1
+    diag --&gt; m_diag --&gt; DG1
+    vitals --&gt; m_vitals --&gt; OBX
+    vac --&gt; m_vac --&gt; RXA
+    all --&gt; m_all --&gt; AL1
+
+    %% MSH Metadata (Conexión global)
+    Engine -. "Auto-generated" .-&gt; MSH
+</code></pre>
+<h2 id="exchange-logic-flow">Exchange Logic Flow</h2>
+<ol>
+<li><strong>Ingestion:</strong> The FastAPI backend receives the strongly-typed Pydantic payload (<code>PatientFullRecord</code>).</li>
+<li><strong>Translation:</strong> The <code>hl7_service.py</code> initiates the <code>hl7apy</code> library to instantiate an empty message.</li>
+<li><strong>Mapping:</strong> </li>
+<li>Static demographic data is mapped to <code>PID</code> and <code>NK1</code>.</li>
+<li>
+<p>Dynamic arrays (visits, vaccines, allergies) are iterated over, dynamically appending <code>PV1</code>, <code>DG1</code>, <code>RXA</code>, and <code>AL1</code> segments.</p>
+</li>
+<li>
+<p><strong>Transmission:</strong> The constructed HL7 string is Base64 encoded and securely transmitted via REST to the Google Cloud Healthcare API HL7v2 Store.</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

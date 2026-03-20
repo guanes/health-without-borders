@@ -959,89 +959,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#71-github-actions-deployment-with-workload-identity-federation-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7.1. GitHub Actions Deployment with Workload Identity Federation (Recommended)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7.1. GitHub Actions Deployment with Workload Identity Federation (Recommended)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#why-this-is-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why this is recommended
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1-create-a-dedicated-deployer-service-account" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Create a dedicated deployer service account
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-grant-least-privilege-roles-to-deployer-service-account" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Grant least-privilege roles to deployer service account
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-create-wif-pool-and-oidc-provider-for-github" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Create WIF pool and OIDC provider for GitHub
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-allow-this-repository-to-impersonate-deployer-service-account" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Allow this repository to impersonate deployer service account
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-configure-github-repository-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Configure GitHub repository variables
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#8-data-initialization-schema-seeding" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1350,89 +1267,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#71-github-actions-deployment-with-workload-identity-federation-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7.1. GitHub Actions Deployment with Workload Identity Federation (Recommended)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7.1. GitHub Actions Deployment with Workload Identity Federation (Recommended)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#why-this-is-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why this is recommended
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1-create-a-dedicated-deployer-service-account" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Create a dedicated deployer service account
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-grant-least-privilege-roles-to-deployer-service-account" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Grant least-privilege roles to deployer service account
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-create-wif-pool-and-oidc-provider-for-github" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Create WIF pool and OIDC provider for GitHub
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-allow-this-repository-to-impersonate-deployer-service-account" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Allow this repository to impersonate deployer service account
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-configure-github-repository-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Configure GitHub repository variables
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#8-data-initialization-schema-seeding" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1677,111 +1511,27 @@
 </ul>
 <p>If using the default Compute service account, ensure IAM is explicitly scoped and reviewed periodically.</p>
 <hr />
-<h2 id="71-github-actions-deployment-with-workload-identity-federation-recommended">7.1. GitHub Actions Deployment with Workload Identity Federation (Recommended)</h2>
-<p>For secure CI/CD from GitHub without sharing JSON keys, use Workload Identity Federation (WIF).</p>
-<h3 id="why-this-is-recommended">Why this is recommended</h3>
-<ul>
-<li>No long-lived private key in GitHub Secrets.</li>
-<li>Short-lived credentials issued at workflow runtime.</li>
-<li>Fine-grained trust (repository/branch scoped).</li>
-</ul>
-<h3 id="1-create-a-dedicated-deployer-service-account">1. Create a dedicated deployer service account</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>create<span class="w"> </span>hwb-github-deployer<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span>--display-name<span class="o">=</span><span class="s2">&quot;HWB GitHub Deployer&quot;</span>
-</code></pre></div>
-<h3 id="2-grant-least-privilege-roles-to-deployer-service-account">2. Grant least-privilege roles to deployer service account</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">DEPLOYER_SA</span><span class="o">=</span><span class="s2">&quot;hwb-github-deployer@&lt;GCP_PROJECT_ID&gt;.iam.gserviceaccount.com&quot;</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RUNTIME_SA</span><span class="o">=</span><span class="s2">&quot;&lt;PROJECT_NUMBER&gt;-compute@developer.gserviceaccount.com&quot;</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>&lt;GCP_PROJECT_ID&gt;<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:</span><span class="si">${</span><span class="nv">DEPLOYER_SA</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span>--role<span class="o">=</span><span class="s2">&quot;roles/run.admin&quot;</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>&lt;GCP_PROJECT_ID&gt;<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">  </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:</span><span class="si">${</span><span class="nv">DEPLOYER_SA</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">  </span>--role<span class="o">=</span><span class="s2">&quot;roles/artifactregistry.writer&quot;</span>
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
-<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>add-iam-policy-binding<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">RUNTIME_SA</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">  </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:</span><span class="si">${</span><span class="nv">DEPLOYER_SA</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">  </span>--role<span class="o">=</span><span class="s2">&quot;roles/iam.serviceAccountUser&quot;</span>
-</code></pre></div>
-<h3 id="3-create-wif-pool-and-oidc-provider-for-github">3. Create WIF pool and OIDC provider for GitHub</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>gcloud<span class="w"> </span>iam<span class="w"> </span>workload-identity-pools<span class="w"> </span>create<span class="w"> </span>github-pool<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span>--project<span class="o">=</span><span class="s2">&quot;&lt;GCP_PROJECT_ID&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span>--location<span class="o">=</span><span class="s2">&quot;global&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span>--display-name<span class="o">=</span><span class="s2">&quot;GitHub Actions Pool&quot;</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>gcloud<span class="w"> </span>iam<span class="w"> </span>workload-identity-pools<span class="w"> </span>providers<span class="w"> </span>create-oidc<span class="w"> </span>github-provider<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">  </span>--project<span class="o">=</span><span class="s2">&quot;&lt;GCP_PROJECT_ID&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">  </span>--location<span class="o">=</span><span class="s2">&quot;global&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">  </span>--workload-identity-pool<span class="o">=</span><span class="s2">&quot;github-pool&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">  </span>--display-name<span class="o">=</span><span class="s2">&quot;GitHub OIDC Provider&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">  </span>--issuer-uri<span class="o">=</span><span class="s2">&quot;https://token.actions.githubusercontent.com&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">  </span>--attribute-mapping<span class="o">=</span><span class="s2">&quot;google.subject=assertion.sub,attribute.repository=assertion.repository,attribute.ref=assertion.ref&quot;</span>
-</code></pre></div>
-<h3 id="4-allow-this-repository-to-impersonate-deployer-service-account">4. Allow this repository to impersonate deployer service account</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>add-iam-policy-binding<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DEPLOYER_SA</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span>--project<span class="o">=</span><span class="s2">&quot;&lt;GCP_PROJECT_ID&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span>--role<span class="o">=</span><span class="s2">&quot;roles/iam.workloadIdentityUser&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span>--member<span class="o">=</span><span class="s2">&quot;principalSet://iam.googleapis.com/projects/&lt;PROJECT_NUMBER&gt;/locations/global/workloadIdentityPools/github-pool/attribute.repository/guanes/health-without-borders&quot;</span>
-</code></pre></div>
-<h3 id="5-configure-github-repository-variables">5. Configure GitHub repository variables</h3>
-<p>Set these repository variables in GitHub (<code>Settings &gt; Secrets and variables &gt; Actions &gt; Variables</code>):</p>
-<ul>
-<li><code>GCP_PROJECT_ID</code></li>
-<li><code>GCP_REGION</code></li>
-<li><code>ARTIFACT_REPO</code></li>
-<li><code>CLOUD_RUN_SERVICE</code></li>
-<li><code>CLOUD_RUN_RUNTIME_SERVICE_ACCOUNT</code></li>
-<li><code>INSTANCE_CONNECTION_NAME</code></li>
-<li><code>DB_USER</code></li>
-<li><code>DB_NAME</code></li>
-<li><code>GCP_DATASET_ID</code></li>
-<li><code>GCP_HL7_STORE_ID</code></li>
-<li><code>HL7_SENDING_APP</code></li>
-<li><code>HL7_SENDING_FACILITY</code></li>
-<li><code>HL7_RECEIVING_APP</code></li>
-<li><code>HL7_RECEIVING_FACILITY</code></li>
-<li><code>HL7_PROCESSING_ID</code></li>
-<li><code>HL7_VERSION_ID</code></li>
-<li><code>ACCESS_TOKEN_EXPIRE_MINUTES</code></li>
-<li><code>BACKEND_CORS_ORIGINS</code></li>
-<li><code>RATE_LIMIT_LOGIN</code></li>
-<li><code>RATE_LIMIT_PATIENT_SEARCH</code></li>
-</ul>
-<p>Set these WIF variables:</p>
-<ul>
-<li><code>GCP_DEPLOYER_SERVICE_ACCOUNT</code> (for example <code>hwb-github-deployer@&lt;GCP_PROJECT_ID&gt;.iam.gserviceaccount.com</code>)</li>
-<li><code>GCP_WORKLOAD_IDENTITY_PROVIDER</code> (full provider path):
-  <code>projects/&lt;PROJECT_NUMBER&gt;/locations/global/workloadIdentityPools/github-pool/providers/github-provider</code></li>
-</ul>
-<p>The workflow file is:</p>
-<ul>
-<li><code>.github/workflows/deploy-cloud-run.yml</code></li>
-</ul>
-<p>This deployment path never requires uploading a service account JSON key.</p>
-<hr />
 <h2 id="8-data-initialization-schema-seeding">8. Data Initialization (Schema &amp; Seeding)</h2>
 <p>Because our database lacks a public IP for security reasons, initializing the database from a local laptop requires a temporary security bypass. We will temporarily assign a public IP, run our scripts securely through the encrypted Auth Proxy, and then lock the instance down again.</p>
 <p><strong>1. Temporarily Open the Vault (Assign Public IP):</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>gcloud<span class="w"> </span>sql<span class="w"> </span>instances<span class="w"> </span>patch<span class="w"> </span>&lt;DB_INSTANCE_NAME&gt;<span class="w"> </span>--assign-ip
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>gcloud<span class="w"> </span>sql<span class="w"> </span>instances<span class="w"> </span>patch<span class="w"> </span>&lt;DB_INSTANCE_NAME&gt;<span class="w"> </span>--assign-ip
 </code></pre></div></p>
 <p><em>(Wait 1-2 minutes for the instance to update).</em></p>
 <p><strong>2. Start the Cloud SQL Auth Proxy:</strong>
 In a new terminal window, open the secure encrypted tunnel:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>./cloud-sql-proxy<span class="w"> </span>&lt;GCP_PROJECT_ID&gt;:&lt;REGION&gt;:&lt;DB_INSTANCE_NAME&gt;<span class="w"> </span>--port<span class="w"> </span><span class="m">5433</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>./cloud-sql-proxy<span class="w"> </span>&lt;GCP_PROJECT_ID&gt;:&lt;REGION&gt;:&lt;DB_INSTANCE_NAME&gt;<span class="w"> </span>--port<span class="w"> </span><span class="m">5433</span>
 </code></pre></div>
 <p><strong>3. Execute Initialization Scripts:</strong>
 In a <strong>separate terminal window</strong>, force the <code>DATABASE_URL</code> to route through the local tunnel:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s2">&quot;postgresql://postgres:&lt;DB_PASSWORD&gt;@127.0.0.1:5433/&lt;DB_NAME&gt;&quot;</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/create_tables.py
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/create_generic_user.py
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/load_catalogs.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s2">&quot;postgresql://postgres:&lt;DB_PASSWORD&gt;@127.0.0.1:5433/&lt;DB_NAME&gt;&quot;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/create_tables.py
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/create_generic_user.py
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/load_catalogs.py
 </code></pre></div>
 <p><strong>4. Close the Vault (Revoke Public IP):</strong>
 Once the scripts complete successfully, immediately restore the maximum security posture:</p>
-<h2 id="gcloud-sql-instances-patch-db_instance_name-no-assign-ip"><div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>gcloud<span class="w"> </span>sql<span class="w"> </span>instances<span class="w"> </span>patch<span class="w"> </span>&lt;DB_INSTANCE_NAME&gt;<span class="w"> </span>--no-assign-ip
+<h2 id="gcloud-sql-instances-patch-db_instance_name-no-assign-ip"><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>gcloud<span class="w"> </span>sql<span class="w"> </span>instances<span class="w"> </span>patch<span class="w"> </span>&lt;DB_INSTANCE_NAME&gt;<span class="w"> </span>--no-assign-ip
 </code></pre></div></h2>
 <h2 id="9-monitoring-and-maintenance">9. Monitoring and Maintenance</h2>
 <ul>

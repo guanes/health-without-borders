@@ -942,6 +942,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-role-based-access-control-rbac-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Role-Based Access Control (RBAC) Matrix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Role-Based Access Control (RBAC) Matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-organizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Organizations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-patients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Patients
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-design-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4. Design Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1257,6 +1318,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-role-based-access-control-rbac-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Role-Based Access Control (RBAC) Matrix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Role-Based Access Control (RBAC) Matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-organizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Organizations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-patients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Patients
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-design-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4. Design Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1481,6 +1603,109 @@
 <ul>
 <li><strong>Search Optimization:</strong> B-Tree indexes are applied to <code>last_name</code> and <code>first_name</code> to support lightning-fast offline/online search functionality from mobile tablets.</li>
 <li><strong>Data Integrity:</strong> Unique constraints are strictly enforced on <code>users.email</code>, <code>patients.id</code>, and <code>patients.device_uid</code> to prevent duplicate records during network syncing anomalies.</li>
+</ul>
+<hr />
+<h2 id="4-role-based-access-control-rbac-matrix">4. Role-Based Access Control (RBAC) Matrix</h2>
+<p>Access to every API endpoint is governed by the user's assigned role. The matrix below documents the complete permission boundaries enforced at the application layer.</p>
+<h3 id="41-organizations">4.1. Organizations</h3>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th><code>superadmin</code></th>
+<th><code>org_admin</code></th>
+<th><code>doctor</code></th>
+<th><code>nurse</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /organizations</code></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>GET /organizations</code></td>
+<td>✅ All orgs</td>
+<td>✅ Own org only</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-users">4.2. Users</h3>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th><code>superadmin</code></th>
+<th><code>org_admin</code></th>
+<th><code>doctor</code></th>
+<th><code>nurse</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /users</code></td>
+<td>✅ Any org</td>
+<td>✅ Own org only (<code>doctor</code>/<code>nurse</code> only)</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>GET /users</code></td>
+<td>✅ All users</td>
+<td>✅ Own org only</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-patients">4.3. Patients</h3>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th><code>superadmin</code></th>
+<th><code>org_admin</code></th>
+<th><code>doctor</code></th>
+<th><code>nurse</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /patients/scan/{device_uid}</code></td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ Own org only</td>
+<td>✅ Own org only</td>
+</tr>
+<tr>
+<td><code>POST /patients/sync</code></td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ Full record</td>
+<td>✅ Vaccines only¹</td>
+</tr>
+<tr>
+<td><code>GET /patients/search</code></td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ Own org only</td>
+<td>✅ Own org only</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>¹ A <code>nurse</code> can call <code>POST /patients/sync</code> but the service layer blocks any attempt to add or modify <code>medicalHistory</code>. Only vaccine records can be appended.</p>
+</blockquote>
+<h3 id="44-design-rationale">4.4. Design Rationale</h3>
+<ul>
+<li><strong><code>superadmin</code> has zero clinical access.</strong> It is a platform administrator role. It cannot read, create, or modify any patient record. This limits blast radius in case of credential compromise.</li>
+<li><strong><code>org_admin</code> manages staff, not patients.</strong> It can provision and list users within its organization but has no access to clinical data.</li>
+<li><strong>Multi-tenancy is enforced at the query level</strong>, not just the role check. Even if a role is permitted, every database query is automatically scoped to <code>current_user.organization_id</code>, making cross-tenant access structurally impossible.</li>
 </ul>
 
 

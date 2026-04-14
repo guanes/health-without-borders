@@ -1211,7 +1211,7 @@
 <h2 id="1-testing-strategy">1. Testing Strategy</h2>
 <p>Our backend relies on a robust automated testing strategy using <code>pytest</code>. The strategy is divided into three main layers:</p>
 <ul>
-<li><strong>Unit Testing:</strong> Focuses on isolated business logic, Pydantic schema validations, and utility functions (e.g., LLM parsing, HL7 generation).</li>
+<li><strong>Unit Testing:</strong> Focuses on isolated business logic, Pydantic schema validations, and utility functions (e.g., LLM parsing, FHIR bundle generation).</li>
 <li><strong>Integration Testing:</strong> Tests the FastAPI endpoints and their interaction with the PostgreSQL database using a dedicated test database and rolled-back transactions.</li>
 <li><strong>Coverage Goals:</strong> We are committed to progressively increasing our test coverage as part of our Open Source roadmap:</li>
 <li>Milestone 1 (Q2): 15% code coverage.</li>
@@ -1227,7 +1227,7 @@
 <p>Our application strictly enforces data validation using <strong>Pydantic</strong> (V2) schemas. This ensures that any data entering or leaving the API is strongly typed and validated.</p>
 <p><strong>Key Data Structures:</strong></p>
 <ul>
-<li><strong>PatientRecord:</strong> Contains demographic data, linked to HL7 constraints.</li>
+<li><strong>PatientRecord:</strong> Contains demographic data, linked to FHIR RDA constraints (Resolution 1888/2025).</li>
 <li><strong>DiagnosisItem:</strong> Enforces WHO ICD-10 and ICD-11 coding standards.</li>
 <li><strong>ClinicalEvaluation:</strong> Handles textual data for AI processing.</li>
 </ul>

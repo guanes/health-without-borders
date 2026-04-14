@@ -1298,7 +1298,7 @@
 <ul>
 <li><strong>Compute:</strong> <a href="https://cloud.google.com/run">Google Cloud Run</a> (Stateless containers).</li>
 <li><strong>Database:</strong> <a href="https://cloud.google.com/sql">Google Cloud SQL</a> (Managed PostgreSQL 15).</li>
-<li><strong>Interoperability:</strong> <a href="https://cloud.google.com/healthcare-api">Cloud Healthcare API</a> (HL7v2 Message Store &amp; FHIR translation).</li>
+<li><strong>Interoperability:</strong> <a href="https://cloud.google.com/healthcare-api">Cloud Healthcare API</a> (FHIR R4 Store for RDA bundles).</li>
 <li><strong>Security:</strong> <a href="https://cloud.google.com/secret-manager">Secret Manager</a> (Secure vault for passwords and keys).</li>
 <li><strong>Registry:</strong> <a href="https://cloud.google.com/artifact-registry">Artifact Registry</a> (Docker image storage).</li>
 <li><strong>CI/CD:</strong> <a href="https://cloud.google.com/build">Cloud Build</a> (Serverless build pipeline).</li>
@@ -1411,12 +1411,15 @@
 </code></pre></div>
 <hr />
 <h2 id="5-healthcare-artifact-registry-setup">5. Healthcare &amp; Artifact Registry Setup</h2>
-<p><strong>1. Healthcare Interoperability:</strong></p>
+<p><strong>1. Healthcare Interoperability (FHIR R4 Store):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>gcloud<span class="w"> </span>healthcare<span class="w"> </span>datasets<span class="w"> </span>create<span class="w"> </span>&lt;DATASET_NAME&gt;<span class="w"> </span>--location<span class="o">=</span>&lt;REGION&gt;
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>gcloud<span class="w"> </span>healthcare<span class="w"> </span>hl7v2-stores<span class="w"> </span>create<span class="w"> </span>&lt;HL7_STORE_NAME&gt;<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>gcloud<span class="w"> </span>healthcare<span class="w"> </span>fhir-stores<span class="w"> </span>create<span class="w"> </span>&lt;FHIR_STORE_NAME&gt;<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span>--dataset<span class="o">=</span>&lt;DATASET_NAME&gt;<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span>--location<span class="o">=</span>&lt;REGION&gt;
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span>--location<span class="o">=</span>&lt;REGION&gt;<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span>--version<span class="o">=</span>R4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span>--enable-referential-integrity<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span>--enable-resource-versioning
 </code></pre></div>
 <p><strong>2. Artifact Registry (Docker storage):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>gcloud<span class="w"> </span>artifacts<span class="w"> </span>repositories<span class="w"> </span>create<span class="w"> </span>&lt;REPO_NAME&gt;<span class="w"> </span><span class="se">\</span>
@@ -1445,14 +1448,8 @@
 <a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span>--set-env-vars<span class="o">=</span><span class="s2">&quot;GCP_PROJECT_ID=&lt;GCP_PROJECT_ID&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span>--set-env-vars<span class="o">=</span><span class="s2">&quot;GCP_LOCATION=&lt;REGION&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">    </span>--set-env-vars<span class="o">=</span><span class="s2">&quot;GCP_DATASET_ID=&lt;DATASET_NAME&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">    </span>--set-env-vars<span class="o">=</span><span class="s2">&quot;GCP_HL7_STORE_ID=&lt;HL7_STORE_NAME&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">    </span>--set-env-vars<span class="o">=</span><span class="s2">&quot;HL7_SENDING_APP=HWB_BACKEND&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">    </span>--set-env-vars<span class="o">=</span><span class="s2">&quot;HL7_SENDING_FACILITY=HWB_FIELD_CLINIC&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">    </span>--set-env-vars<span class="o">=</span><span class="s2">&quot;HL7_RECEIVING_APP=GCP_HEALTHCARE&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">    </span>--set-env-vars<span class="o">=</span><span class="s2">&quot;HL7_RECEIVING_FACILITY=GCP_DATALAKE&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">    </span>--set-env-vars<span class="o">=</span><span class="s2">&quot;HL7_PROCESSING_ID=D&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">    </span>--set-env-vars<span class="o">=</span><span class="s2">&quot;HL7_VERSION_ID=2.5.1&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">    </span>--update-secrets<span class="o">=</span><span class="s2">&quot;DB_PASS=hwb-db-pass:latest,SECRET_KEY=hwb-secret-key:latest&quot;</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">    </span>--set-env-vars<span class="o">=</span><span class="s2">&quot;GCP_FHIR_STORE_ID=&lt;FHIR_STORE_NAME&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">    </span>--update-secrets<span class="o">=</span><span class="s2">&quot;DB_PASS=hwb-db-pass:latest,SECRET_KEY=hwb-secret-key:latest&quot;</span>
 </code></pre></div>
 <hr />
 <h2 id="7-cicd-automation-cloud-build">7. CI/CD Automation (Cloud Build) 🚀</h2>
@@ -1509,7 +1506,7 @@ Once the scripts complete successfully, immediately restore the maximum security
 <ul>
 <li><strong>Application Logs:</strong> <a href="https://console.cloud.google.com/run">Cloud Run Console</a> -&gt; "Logs" tab.</li>
 <li><strong>Database Performance:</strong> <a href="https://console.cloud.google.com/sql">Cloud SQL Console</a>.</li>
-<li><strong>HL7v2 Metrics:</strong> <a href="https://console.cloud.google.com/healthcare">Cloud Healthcare API Dashboard</a>.</li>
+<li><strong>FHIR Store Metrics:</strong> <a href="https://console.cloud.google.com/healthcare">Cloud Healthcare API Dashboard</a>.</li>
 <li><strong>CI/CD Pipeline:</strong> <a href="https://console.cloud.google.com/cloud-build/builds">Cloud Build History</a>.</li>
 </ul>
 

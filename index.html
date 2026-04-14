@@ -14,7 +14,7 @@
       
       
       
-        <link rel="next" href="architecture/hl7v2-strategy/">
+        <link rel="next" href="architecture/fhir-rda/">
       
       
         
@@ -246,7 +246,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="architecture/hl7v2-strategy/" class="md-tabs__link">
+        <a href="architecture/fhir-rda/" class="md-tabs__link">
           
   
   
@@ -413,7 +413,7 @@
   <a href="#key-features" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🚀 Key Features
+        Key Features
       
     </span>
   </a>
@@ -424,12 +424,12 @@
   <a href="#documentation-index" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Documentation Index
+        Documentation Index
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📚 Documentation Index">
+    <nav class="md-nav" aria-label="Documentation Index">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -474,7 +474,7 @@
   <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚡ Quick Start
+        Quick Start
       
     </span>
   </a>
@@ -485,7 +485,7 @@
   <a href="#contributing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🤝 Contributing
+        Contributing
       
     </span>
   </a>
@@ -559,14 +559,14 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hl7v2-strategy/" class="md-nav__link">
+      <a href="architecture/fhir-rda/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    HL7v2 Strategy
+    FHIR RDA Architecture
   
 
     
@@ -595,34 +595,6 @@
     
   
     AI & NLP Integration
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="architecture/hl7-mapping/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HL7v2 Mapping
   
 
     
@@ -908,7 +880,7 @@
   <span class="md-ellipsis">
     
   
-    Healthcare API
+    FHIR Store Configuration
   
 
     
@@ -1015,7 +987,7 @@
   <a href="#key-features" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🚀 Key Features
+        Key Features
       
     </span>
   </a>
@@ -1026,12 +998,12 @@
   <a href="#documentation-index" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Documentation Index
+        Documentation Index
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📚 Documentation Index">
+    <nav class="md-nav" aria-label="Documentation Index">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1076,7 +1048,7 @@
   <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚡ Quick Start
+        Quick Start
       
     </span>
   </a>
@@ -1087,7 +1059,7 @@
   <a href="#contributing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🤝 Contributing
+        Contributing
       
     </span>
   </a>
@@ -1116,40 +1088,41 @@
 
 <h1 id="health-without-borders-backend-api">Health Without Borders — Backend API</h1>
 <p><strong>Interoperable Medical Records Platform for Migrant Children and Adolescents.</strong></p>
-<p>This site documents the <strong>Backend API</strong> of the Health Without Borders initiative — a RESTful API built to guarantee continuity of medical care for migrant populations through a secure, standardized (HL7/FHIR) system resilient to intermittent connectivity in border areas.</p>
+<p>This site documents the Backend API of the Health Without Borders initiative — a RESTful API built to guarantee continuity of medical care for migrant populations through a secure, FHIR R4-standardized system resilient to intermittent connectivity in border areas.</p>
 <p>Source code: <a href="https://github.com/guanes/health-without-borders">github.com/guanes/health-without-borders</a></p>
 <hr />
-<h2 id="key-features">🚀 Key Features</h2>
+<h2 id="key-features">Key Features</h2>
 <ul>
-<li><strong>Serverless Architecture:</strong> Deployed on Google Cloud Run for automatic scalability and cost efficiency.</li>
-<li><strong>Robust Security:</strong> Authentication via JWT with secure rotation and password encryption using Bcrypt. Full RBAC and multi-tenancy.</li>
-<li><strong>Medical Standardization:</strong> Integrated international catalogs (ICD-10 for diagnoses and CVX for vaccination).</li>
-<li><strong>Offline-First:</strong> Optimized endpoints for data synchronization from mobile devices with limited connectivity.</li>
-<li><strong>HL7v2 Interoperability:</strong> Native integration with Google Cloud Healthcare API for clinical message exchange.</li>
-<li><strong>AI-Assisted Diagnosis:</strong> Gemini LLM integration for automated ICD-10/11 code extraction from clinical notes.</li>
+<li><strong>FHIR R4 Interoperability:</strong> Generates RDA (Resumen Digital de Atención en Salud) bundles compliant with Colombia's Resolution 1888/2025 and the IHCE Implementation Guide.</li>
+<li><strong>AI-Assisted Medical Coding:</strong> Gemini LLM integration for automated ICD-10/11 code extraction from clinical notes and family history coding.</li>
+<li><strong>Offline-First:</strong> Optimized sync endpoints for mobile devices with limited connectivity.</li>
+<li><strong>Robust Security:</strong> JWT authentication, RBAC with multi-tenancy, hardware 2FA for minors via NFC bracelets.</li>
+<li><strong>Serverless Architecture:</strong> Deployed on Google Cloud Run for automatic scalability.</li>
+<li><strong>Delta Sync:</strong> Only new FHIR bundles are generated and sent to the FHIR Store — no duplicate transmissions.</li>
 </ul>
 <hr />
-<h2 id="documentation-index">📚 Documentation Index</h2>
+<h2 id="documentation-index">Documentation Index</h2>
 <h3 id="architecture">Architecture</h3>
 <ul>
-<li><a href="architecture/hl7v2-strategy/"><strong>HL7v2 Strategy (ADR)</strong></a> — Architectural Decision Record comparing GCP, Mirth Connect, and In-House solutions.</li>
-<li><a href="architecture/hl7-mapping/"><strong>HL7v2 Mapping Specifications</strong></a> — JSON to HL7v2 field mapping reference.</li>
+<li><a href="architecture/fhir-rda/"><strong>FHIR RDA Architecture</strong></a> — Bundle types, delta sync logic, resource mapping, and terminology systems.</li>
 <li><a href="architecture/ai-integration/"><strong>AI &amp; NLP Integration</strong></a> — Prompt engineering strategy for automated ICD-10/11 coding using Vertex AI.</li>
 </ul>
 <h3 id="development">Development</h3>
 <ul>
 <li><a href="development/setup/"><strong>Local Setup Guide</strong></a> — How to configure Docker and run the API locally.</li>
 <li><a href="development/qa-plan/"><strong>QA &amp; PR Workflow</strong></a> — Quality assurance process and Pull Request standards.</li>
+<li><a href="development/remediation-program/"><strong>Remediation Program</strong></a> — Security, quality, and compliance remediation tracking.</li>
 </ul>
 <h3 id="infrastructure-security">Infrastructure &amp; Security</h3>
 <ul>
 <li><a href="infrastructure/database/"><strong>Database Schema</strong></a> — Data modeling, JSONB usage, and table dictionary.</li>
 <li><a href="infrastructure/gcp-deploy/"><strong>GCP Deployment Guide</strong></a> — Step-by-step instructions for deploying to Google Cloud Run.</li>
-<li><a href="infrastructure/healthcare-api/"><strong>Cloud Healthcare API</strong></a> — GCP HL7v2 Store and Pub/Sub configuration.</li>
+<li><a href="infrastructure/healthcare-api/"><strong>FHIR Store Configuration</strong></a> — GCP Healthcare API FHIR Store setup and IAM.</li>
 <li><a href="infrastructure/security/"><strong>Security Protocols</strong></a> — JWT configuration, RBAC, encryption standards, and data flow.</li>
+<li><a href="infrastructure/iso27001-technical-mapping/"><strong>ISO 27001 Mapping</strong></a> — Technical control mapping to ISO/IEC 27001:2022.</li>
 </ul>
 <hr />
-<h2 id="quick-start">⚡ Quick Start</h2>
+<h2 id="quick-start">Quick Start</h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 1. Clone repository</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/guanes/health-without-borders.git
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>health-without-borders
@@ -1175,7 +1148,7 @@
 </code></pre></div>
 <p>The interactive API will be available at: <strong>http://localhost:8000/docs</strong></p>
 <hr />
-<h2 id="contributing">🤝 Contributing</h2>
+<h2 id="contributing">Contributing</h2>
 <p>We welcome contributions from the community. Please read the <a href="https://github.com/guanes/health-without-borders/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> guide and our <a href="https://github.com/guanes/health-without-borders/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a> before submitting a Pull Request.</p>
 <p>This project is licensed under the <strong>MIT License</strong>.</p>
 

@@ -246,7 +246,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../architecture/hl7v2-strategy/" class="md-tabs__link">
+        <a href="../../architecture/fhir-rda/" class="md-tabs__link">
           
   
   
@@ -431,14 +431,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/hl7v2-strategy/" class="md-nav__link">
+      <a href="../../architecture/fhir-rda/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    HL7v2 Strategy
+    FHIR RDA Architecture
   
 
     
@@ -467,34 +467,6 @@
     
   
     AI & NLP Integration
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../architecture/hl7-mapping/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HL7v2 Mapping
   
 
     
@@ -905,10 +877,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-hybrid-relational-document-model-jsonb" class="md-nav__link">
+  <a href="#32-hybrid-relational-document-model-json" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2. Hybrid Relational-Document Model (JSONB)
+        3.2. Hybrid Relational-Document Model (JSON)
       
     </span>
   </a>
@@ -916,10 +888,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#33-soft-deletion-is_active" class="md-nav__link">
+  <a href="#33-delta-sync-tracking" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.3. Soft Deletion (is_active)
+        3.3. Delta Sync Tracking
       
     </span>
   </a>
@@ -927,10 +899,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#34-indexing-strategy" class="md-nav__link">
+  <a href="#34-soft-deletion-is_active" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.4. Indexing Strategy
+        3.4. Soft Deletion (is_active)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-indexing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Indexing Strategy
       
     </span>
   </a>
@@ -1054,7 +1037,7 @@
   <span class="md-ellipsis">
     
   
-    Healthcare API
+    FHIR Store Configuration
   
 
     
@@ -1281,10 +1264,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-hybrid-relational-document-model-jsonb" class="md-nav__link">
+  <a href="#32-hybrid-relational-document-model-json" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2. Hybrid Relational-Document Model (JSONB)
+        3.2. Hybrid Relational-Document Model (JSON)
       
     </span>
   </a>
@@ -1292,10 +1275,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#33-soft-deletion-is_active" class="md-nav__link">
+  <a href="#33-delta-sync-tracking" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.3. Soft Deletion (is_active)
+        3.3. Delta Sync Tracking
       
     </span>
   </a>
@@ -1303,10 +1286,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#34-indexing-strategy" class="md-nav__link">
+  <a href="#34-soft-deletion-is_active" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.4. Indexing Strategy
+        3.4. Soft Deletion (is_active)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-indexing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Indexing Strategy
       
     </span>
   </a>
@@ -1400,7 +1394,7 @@
 
 
 <h1 id="database-architecture-schema">Database Architecture &amp; Schema</h1>
-<p>This document details the data persistence layer for the <strong>Health Without Borders API</strong>. The system utilizes a relational database model optimized for transactional integrity, multi-tenancy, interoperability with international health standards (HL7/FHIR), and seamless synchronization with offline-first mobile clients.</p>
+<p>This document details the data persistence layer for the <strong>Health Without Borders API</strong>. The system utilizes a relational database model optimized for transactional integrity, multi-tenancy, interoperability with FHIR R4 (Resolution 1888/2025), and seamless synchronization with offline-first mobile clients.</p>
 <h2 id="1-technology-stack">1. Technology Stack</h2>
 <ul>
 <li><strong>Engine:</strong> PostgreSQL 15 (Managed via Google Cloud SQL in production, Docker for local development).</li>
@@ -1499,7 +1493,7 @@
 </tbody>
 </table>
 <h3 id="23-patient-demographics-patients">2.3. Patient Demographics (<code>patients</code>)</h3>
-<p>Stores the core identity data of migrant children. Data is strictly scoped by <code>organization_id</code>.</p>
+<p>Stores the core identity data of migrant children. Data is strictly scoped by <code>organization_id</code>. Relational columns mirror the most-queried RDA elements (Resolution 866/2021) so the database can filter without scanning JSON.</p>
 <table>
 <thead>
 <tr>
@@ -1514,12 +1508,12 @@
 <td style="text-align: left;"><code>id</code></td>
 <td style="text-align: left;">Varchar</td>
 <td style="text-align: left;">PK</td>
-<td style="text-align: left;">Unique ID (National ID, PPT, or generated UUID).</td>
+<td style="text-align: left;">Unique ID (generated UUID v4 from frontend).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>organization_id</code></td>
 <td style="text-align: left;">Varchar</td>
-<td style="text-align: left;">FK</td>
+<td style="text-align: left;">FK, Not Null</td>
 <td style="text-align: left;">Ensures patients are only visible to their registering NGO.</td>
 </tr>
 <tr>
@@ -1529,28 +1523,58 @@
 <td style="text-align: left;">Hardware ID (NFC Bracelet/Tag) for physical 2FA.</td>
 </tr>
 <tr>
+<td style="text-align: left;"><code>document_type</code></td>
+<td style="text-align: left;">Varchar(5)</td>
+<td style="text-align: left;">Index</td>
+<td style="text-align: left;">Identity document type — CC, CE, TI, RC, PT, PE, etc. (Res. 866 Elem. 2.1).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>document_number</code></td>
+<td style="text-align: left;">Varchar</td>
+<td style="text-align: left;">Index</td>
+<td style="text-align: left;">Identity document number (Res. 866 Elem. 2.2).</td>
+</tr>
+<tr>
 <td style="text-align: left;"><code>first_name</code></td>
 <td style="text-align: left;">Varchar</td>
 <td style="text-align: left;">Not Null, Index</td>
-<td style="text-align: left;">Standardized first name (ILIKE searchable).</td>
+<td style="text-align: left;">Primer nombre (case-insensitive search).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>last_name</code></td>
 <td style="text-align: left;">Varchar</td>
 <td style="text-align: left;">Not Null, Index</td>
-<td style="text-align: left;">Standardized last name (ILIKE searchable).</td>
+<td style="text-align: left;">Primer apellido (Res. 866 Elem. 3.1).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>second_last_name</code></td>
+<td style="text-align: left;">Varchar</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Segundo apellido (Res. 866 Elem. 3.2).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>birth_date</code></td>
 <td style="text-align: left;">Date</td>
 <td style="text-align: left;">Not Null</td>
-<td style="text-align: left;">Date of Birth for age calculation and vaccine schedules.</td>
+<td style="text-align: left;">Date of birth for age calculation and vaccine schedules.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>biological_sex</code></td>
+<td style="text-align: left;">Varchar(2)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Biological sex: M, F, I (Res. 866 Elem. 5).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>blood_type</code></td>
-<td style="text-align: left;">Varchar</td>
+<td style="text-align: left;">Varchar(5)</td>
 <td style="text-align: left;">Nullable</td>
 <td style="text-align: left;">Optional blood group (e.g., O+, A-).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>nationality_code</code></td>
+<td style="text-align: left;">Varchar(3)</td>
+<td style="text-align: left;">Index</td>
+<td style="text-align: left;">ISO 3166-1 country code (Res. 866 Elems. 1.1, 1.2). Critical for migrant population filtering.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>guardian_name</code></td>
@@ -1566,15 +1590,33 @@
 </tr>
 <tr>
 <td style="text-align: left;"><code>full_record_json</code></td>
-<td style="text-align: left;">JSONB</td>
+<td style="text-align: left;">JSON</td>
 <td style="text-align: left;">Nullable</td>
-<td style="text-align: left;">Flexible document storage for clinical evaluation, background, LLM-generated diagnoses, and vaccines.</td>
+<td style="text-align: left;">Authoritative source for the complete patient payload (clinical evaluations, diagnoses, allergies, vaccinations, family history).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>synced_visit_count</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">Default: 0</td>
+<td style="text-align: left;">Number of <code>medicalHistory</code> entries already sent to the FHIR Store. Used for delta sync logic.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>rda_paciente_sent</code></td>
+<td style="text-align: left;">Boolean</td>
+<td style="text-align: left;">Default: false</td>
+<td style="text-align: left;">Whether the RDA-Paciente bundle has been sent to the FHIR Store at least once.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>created_at</code></td>
 <td style="text-align: left;">DateTime</td>
 <td style="text-align: left;">Default: now()</td>
-<td style="text-align: left;">Audit metadata.</td>
+<td style="text-align: left;">Audit metadata — record creation timestamp.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>updated_at</code></td>
+<td style="text-align: left;">DateTime</td>
+<td style="text-align: left;">Default: now(), onupdate</td>
+<td style="text-align: left;">Audit metadata — last modification timestamp.</td>
 </tr>
 </tbody>
 </table>
@@ -1585,28 +1627,30 @@
 * <strong><code>name</code>:</strong> The official descriptive name of the vaccine.
 * <strong><code>is_active</code>:</strong> Boolean flag.</p>
 <h4 id="diagnosis-catalog-catalog_cie10">Diagnosis Catalog (<code>catalog_cie10</code>)</h4>
-<p><em>Note: While this table exists for historical reference and legacy support, the primary assignment of ICD-10 and ICD-11 codes is now performed dynamically via Generative AI (Vertex AI) based on the physician's clinical evaluation notes during the sync process.</em>
+<p><em>Note: While this table exists for historical reference, the primary assignment of ICD-10 and ICD-11 codes is now performed dynamically via the LLM service (Vertex AI) during the sync process.</em>
 * <strong><code>code</code> (PK):</strong> The alphanumeric code (e.g., <code>A09.9</code>).
 * <strong><code>description</code>:</strong> The official Spanish translation.
 * <strong><code>is_common</code>:</strong> Boolean flag.</p>
 <hr />
 <h2 id="3-architecture-design-decisions">3. Architecture &amp; Design Decisions</h2>
 <h3 id="31-strict-multi-tenancy">3.1. Strict Multi-Tenancy</h3>
-<p>The database enforces tenant isolation at the schema level. Every <code>Patient</code> and <code>User</code> must belong to an <code>Organization</code>. Queries at the service layer automatically inject the <code>organization_id</code> of the requesting user, making it mathematically impossible for a doctor in NGO "A" to query or modify a patient from NGO "B".</p>
-<h3 id="32-hybrid-relational-document-model-jsonb">3.2. Hybrid Relational-Document Model (JSONB)</h3>
-<p>Migrant populations often have unstructured or transient data. 
-* <strong>Implementation:</strong> We utilize PostgreSQL's <code>JSONB</code> data type for the <code>full_record_json</code> field. 
-* <strong>Querying:</strong> The backend safely queries deeply nested JSON data allowing high-performance searches on unstructured fields without loading the entire document into memory. This JSON is also the source of truth used to build the HL7v2 messages.</p>
-<h3 id="33-soft-deletion-is_active">3.3. Soft Deletion (<code>is_active</code>)</h3>
-<p>Rows in critical tables (Users, Organizations) are never physically deleted (<code>DELETE FROM</code>). This preserves historical integrity. If a doctor leaves the NGO, their historical records and clinical edits must remain valid and intact for future audits.</p>
-<h3 id="34-indexing-strategy">3.4. Indexing Strategy</h3>
+<p>The database enforces tenant isolation at the schema level. Every <code>Patient</code> and <code>User</code> must belong to an <code>Organization</code>. Queries at the service layer automatically inject the <code>organization_id</code> of the requesting user, making it structurally impossible for a doctor in NGO "A" to query or modify a patient from NGO "B".</p>
+<h3 id="32-hybrid-relational-document-model-json">3.2. Hybrid Relational-Document Model (JSON)</h3>
+<p>Migrant populations often have unstructured or transient data.
+* <strong>Implementation:</strong> PostgreSQL's <code>JSON</code> data type stores the <code>full_record_json</code> field — the authoritative source for the complete patient payload.
+* <strong>Relational Columns:</strong> The most-queried fields (<code>document_number</code>, <code>first_name</code>, <code>last_name</code>, <code>nationality_code</code>) are mirrored as indexed relational columns for fast lookups without scanning JSON.
+* <strong>FHIR Source:</strong> The JSON is the source of truth used to build FHIR R4 RDA bundles for interoperability.</p>
+<h3 id="33-delta-sync-tracking">3.3. Delta Sync Tracking</h3>
+<p>Two columns (<code>synced_visit_count</code>, <code>rda_paciente_sent</code>) track which data has already been sent to the FHIR Store. This prevents duplicate bundle transmissions and enables automatic retry: if GCP fails, the tracking is not updated, so the next sync retries the failed bundles.</p>
+<h3 id="34-soft-deletion-is_active">3.4. Soft Deletion (<code>is_active</code>)</h3>
+<p>Rows in critical tables (Users, Organizations) are never physically deleted. This preserves historical integrity for future audits.</p>
+<h3 id="35-indexing-strategy">3.5. Indexing Strategy</h3>
 <ul>
-<li><strong>Search Optimization:</strong> B-Tree indexes are applied to <code>last_name</code> and <code>first_name</code> to support lightning-fast offline/online search functionality from mobile tablets.</li>
-<li><strong>Data Integrity:</strong> Unique constraints are strictly enforced on <code>users.email</code>, <code>patients.id</code>, and <code>patients.device_uid</code> to prevent duplicate records during network syncing anomalies.</li>
+<li><strong>Search Optimization:</strong> B-Tree indexes on <code>first_name</code>, <code>last_name</code>, <code>document_number</code>, and <code>nationality_code</code> for fast patient lookups.</li>
+<li><strong>Data Integrity:</strong> Unique constraints on <code>users.email</code>, <code>patients.id</code>, and <code>patients.device_uid</code> to prevent duplicates during network sync anomalies.</li>
 </ul>
 <hr />
 <h2 id="4-role-based-access-control-rbac-matrix">4. Role-Based Access Control (RBAC) Matrix</h2>
-<p>Access to every API endpoint is governed by the user's assigned role. The matrix below documents the complete permission boundaries enforced at the application layer.</p>
 <h3 id="41-organizations">4.1. Organizations</h3>
 <table>
 <thead>
@@ -1678,9 +1722,9 @@
 <tr>
 <td><code>GET /patients/scan/{device_uid}</code></td>
 <td>❌</td>
-<td>❌</td>
-<td>✅ Own org only</td>
-<td>✅ Own org only</td>
+<td>✅</td>
+<td>✅ Own org</td>
+<td>✅ Own org</td>
 </tr>
 <tr>
 <td><code>POST /patients/sync</code></td>
@@ -1692,9 +1736,9 @@
 <tr>
 <td><code>GET /patients/search</code></td>
 <td>❌</td>
-<td>❌</td>
-<td>✅ Own org only</td>
-<td>✅ Own org only</td>
+<td>✅</td>
+<td>✅ Own org</td>
+<td>✅ Own org</td>
 </tr>
 </tbody>
 </table>
@@ -1703,9 +1747,9 @@
 </blockquote>
 <h3 id="44-design-rationale">4.4. Design Rationale</h3>
 <ul>
-<li><strong><code>superadmin</code> has zero clinical access.</strong> It is a platform administrator role. It cannot read, create, or modify any patient record. This limits blast radius in case of credential compromise.</li>
+<li><strong><code>superadmin</code> has zero clinical access.</strong> It is a platform administrator role. It cannot read, create, or modify any patient record.</li>
 <li><strong><code>org_admin</code> manages staff, not patients.</strong> It can provision and list users within its organization but has no access to clinical data.</li>
-<li><strong>Multi-tenancy is enforced at the query level</strong>, not just the role check. Even if a role is permitted, every database query is automatically scoped to <code>current_user.organization_id</code>, making cross-tenant access structurally impossible.</li>
+<li><strong>Multi-tenancy is enforced at the query level</strong>, not just the role check. Every database query is automatically scoped to <code>current_user.organization_id</code>.</li>
 </ul>
 
 

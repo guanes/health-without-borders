@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://guanes.github.io/health-without-borders/architecture/ai-integration/">
       
       
-        <link rel="prev" href="../hl7v2-strategy/">
+        <link rel="prev" href="../fhir-rda/">
       
       
-        <link rel="next" href="../hl7-mapping/">
+        <link rel="next" href="../../development/setup/">
       
       
         
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#architectural-decision-record-adr-ai-powered-clinical-nlp-extraction" class="md-skip">
+        <a href="#architectural-decision-record-adr-ai-powered-clinical-nlp" class="md-skip">
           Skip to content
         </a>
       
@@ -248,7 +248,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../hl7v2-strategy/" class="md-tabs__link">
+        <a href="../fhir-rda/" class="md-tabs__link">
           
   
   
@@ -436,14 +436,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../hl7v2-strategy/" class="md-nav__link">
+      <a href="../fhir-rda/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    HL7v2 Strategy
+    FHIR RDA Architecture
   
 
     
@@ -546,15 +546,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-architecture-security-mechanisms" class="md-nav__link">
+  <a href="#3-architecture-security" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Architecture &amp; Security Mechanisms
+        3. Architecture &amp; Security
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Architecture &amp; Security Mechanisms">
+    <nav class="md-nav" aria-label="3. Architecture &amp; Security">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -595,38 +595,60 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-task-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Task Details
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Task Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-diagnosis-extraction-extract_diagnoses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Diagnosis Extraction (extract_diagnoses)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-family-history-coding-code_family_history_item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Family History Coding (code_family_history_item)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Prompt Engineering
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../hl7-mapping/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HL7v2 Mapping
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -904,7 +926,7 @@
   <span class="md-ellipsis">
     
   
-    Healthcare API
+    FHIR Store Configuration
   
 
     
@@ -1030,15 +1052,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-architecture-security-mechanisms" class="md-nav__link">
+  <a href="#3-architecture-security" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Architecture &amp; Security Mechanisms
+        3. Architecture &amp; Security
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Architecture &amp; Security Mechanisms">
+    <nav class="md-nav" aria-label="3. Architecture &amp; Security">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1079,6 +1101,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-task-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Task Details
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Task Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-diagnosis-extraction-extract_diagnoses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Diagnosis Extraction (extract_diagnoses)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-family-history-coding-code_family_history_item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Family History Coding (code_family_history_item)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Prompt Engineering
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1099,27 +1171,51 @@
   
 
 
-<h1 id="architectural-decision-record-adr-ai-powered-clinical-nlp-extraction">Architectural Decision Record (ADR): AI-Powered Clinical NLP Extraction</h1>
+<h1 id="architectural-decision-record-adr-ai-powered-clinical-nlp">Architectural Decision Record (ADR): AI-Powered Clinical NLP</h1>
 <h2 id="1-context">1. Context</h2>
-<p>Medical staff in field operations often record clinical notes as free-text (History of Present Illness, Physical Exam, etc.). Requiring them to manually search and map these notes to complex WHO ICD-10/ICD-11 codes on a tablet in offline environments creates friction and data quality issues.</p>
+<p>Medical staff in field operations record clinical notes as free-text (History of Present Illness, Physical Exam, etc.). Requiring them to manually search and map these notes to complex WHO ICD-10/ICD-11 codes on a tablet in offline environments creates friction and data quality issues.</p>
+<p>Additionally, patients and guardians report family medical history using colloquial terms ("mi papá es diabético") that need to be mapped to standardized ICD codes for the FHIR RDA bundles required by Resolution 1888/2025.</p>
 <h2 id="2-decision">2. Decision</h2>
-<p>We integrated a Generative AI processor (<strong>Google Vertex AI</strong>) to act as a clinical NLP (Natural Language Processing) engine. </p>
-<p>Instead of manual catalog lookups, the backend intercepts the synchronization payload (<code>POST /api/v1/patients/sync</code>), extracts the free-text clinical evaluation, and uses a highly structured Prompt Engineering technique (Chain of Thought + Few-Shot Prompting) to infer the exact WHO terminal codes.</p>
-<h2 id="3-architecture-security-mechanisms">3. Architecture &amp; Security Mechanisms</h2>
+<p>We integrated a Generative AI processor (<strong>Google Vertex AI / Gemini</strong>) to handle two medical coding tasks during the sync process:</p>
+<ol>
+<li><strong>Diagnosis extraction</strong> — Analyzes free-text clinical evaluation fields to produce structured ICD-10/11 coded diagnoses.</li>
+<li><strong>Family history coding</strong> — Maps condition descriptions (e.g., "Diabetes") to ICD-10/11 codes.</li>
+</ol>
+<p>Both tasks run automatically during <code>POST /api/v1/patients/sync</code> before the data is persisted and FHIR bundles are generated.</p>
+<h2 id="3-architecture-security">3. Architecture &amp; Security</h2>
 <h3 id="model-execution">Model Execution</h3>
 <ul>
 <li><strong>Model:</strong> gemini-2.5-pro (via Vertex AI).</li>
-<li><strong>Configuration:</strong> <code>temperature=0.0</code> (Greedy Decoding) to eliminate hallucinations and enforce deterministic coding. <code>thinking_config</code> enabled for internal step-by-step reasoning.</li>
+<li><strong>Configuration:</strong> <code>temperature=0.0</code> (Greedy Decoding) for deterministic coding. <code>thinking_config</code> enabled for internal step-by-step reasoning.</li>
 </ul>
 <h3 id="safety-compliance">Safety &amp; Compliance</h3>
 <ul>
-<li><strong>Data Privacy:</strong> By using <code>vertexai=True</code>, the request is routed through GCP's enterprise infrastructure. Data is NOT used to train Google's consumer models, ensuring HIPAA/GDPR compliance.</li>
-<li><strong>Safety Settings:</strong> Harm Block Thresholds are explicitly set to <code>BLOCK_NONE</code> to prevent legitimate anatomical or clinical terms from being falsely flagged as inappropriate content.</li>
+<li><strong>Data Privacy:</strong> By using <code>vertexai=True</code>, the request is routed through GCP's enterprise infrastructure. Data is NOT used to train Google's consumer models.</li>
+<li><strong>Safety Settings:</strong> Harm Block Thresholds are set to <code>BLOCK_NONE</code> to prevent legitimate anatomical or clinical terms from being falsely flagged.</li>
 </ul>
 <h3 id="validation-layer">Validation Layer</h3>
 <ul>
-<li><strong>Structured Output:</strong> The model is constrained to return a strictly typed JSON array matching our <code>RESPONSE_SCHEMA</code>.</li>
-<li><strong>Pydantic Parsing:</strong> The raw JSON is immediately parsed by the <code>DiagnosisItem</code> Pydantic model. If the extraction fails, a safe fallback diagnosis (<code>Z00.0 - General medical examination</code>) is injected with the <code>is_ai_generated</code> flag set to <code>True</code> to prevent sync failures.</li>
+<li><strong>Structured Output:</strong> Each task uses a dedicated Gemini response schema (<code>DIAGNOSIS_RESPONSE_SCHEMA</code> for diagnoses, <code>FAMILY_HISTORY_RESPONSE_SCHEMA</code> for family history) to enforce the exact JSON structure returned.</li>
+<li><strong>Pydantic Parsing:</strong> Raw JSON is immediately parsed by <code>DiagnosisItem</code> Pydantic models. If extraction fails, a safe fallback is injected to prevent sync failures.</li>
+</ul>
+<h2 id="4-task-details">4. Task Details</h2>
+<h3 id="41-diagnosis-extraction-extract_diagnoses">4.1. Diagnosis Extraction (<code>extract_diagnoses</code>)</h3>
+<p>Input: Four free-text fields from <code>clinicalEvaluation</code> (history of current illness, physical exam, systems review, treatment plan).</p>
+<p>Output: <code>List[DiagnosisItem]</code> — each with <code>icd10Code</code>, <code>icd11Code</code> (nullable), and <code>description</code> in Spanish.</p>
+<p>The <code>diagnosisType</code> field (impresión diagnóstica / confirmado) is NOT determined by the LLM — it is set by the physician at the encounter level.</p>
+<p>Fallback on error: <code>Z00.0 — Examen médico general (Fallo en extracción IA)</code>.</p>
+<h3 id="42-family-history-coding-code_family_history_item">4.2. Family History Coding (<code>code_family_history_item</code>)</h3>
+<p>Input: Single <code>conditionDescription</code> string (e.g., "Glaucoma").</p>
+<p>Output: Dictionary with <code>icd10Code</code>, <code>icd11Code</code> (nullable), and <code>description</code> in Spanish.</p>
+<p>Only runs for <code>FamilyHistoryItem</code> entries that have a description but no ICD codes yet — items already coded (e.g., from a previous sync) are skipped.</p>
+<p>Fallback on error: <code>Z84.8</code> with the original description preserved.</p>
+<h2 id="5-prompt-engineering">5. Prompt Engineering</h2>
+<p>Both tasks use Chain of Thought + Few-Shot prompting with strict rules to prevent common LLM coding errors:</p>
+<ul>
+<li><strong>WHO-only codes</strong> — US-specific ICD-10-CM codes (like Z00.129) are explicitly forbidden.</li>
+<li><strong>ICD-11 caution</strong> — The LLM must return <code>null</code> for <code>icd11Code</code> if it is not 100% certain of the exact code. It is better to return null than to hallucinate a code.</li>
+<li><strong>No overcoding</strong> — Symptoms integral to the primary diagnosis (e.g., "abdominal pain" with gastroenteritis) are not coded separately.</li>
+<li><strong>Spanish descriptions</strong> — All medical descriptions are returned in professional medical Spanish.</li>
 </ul>
 
 

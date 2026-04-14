@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://guanes.github.io/health-without-borders/architecture/hl7-mapping/">
+        <link rel="canonical" href="https://guanes.github.io/health-without-borders/architecture/fhir-rda/">
       
       
-        <link rel="prev" href="../ai-integration/">
+        <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../../development/setup/">
+        <link rel="next" href="../ai-integration/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>HL7v2 Mapping - Health Without Borders - API Docs</title>
+        <title>FHIR RDA Architecture - Health Without Borders - API Docs</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hl7v2-data-mapping-and-exchange-logic" class="md-skip">
+        <a href="#fhir-rda-architecture-resolution-18882025-compliance" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              HL7v2 Mapping
+              FHIR RDA Architecture
             
           </span>
         </div>
@@ -248,7 +248,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../hl7v2-strategy/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -433,17 +433,44 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../hl7v2-strategy/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FHIR RDA Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    HL7v2 Strategy
+    FHIR RDA Architecture
   
 
     
@@ -452,6 +479,131 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-bundle-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Bundle Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-delta-sync-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Delta Sync Logic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fhir-resource-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. FHIR Resource Mapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. FHIR Resource Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rda-paciente-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RDA-Paciente Bundle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rda-consulta-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RDA-Consulta Bundle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Terminology Systems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-key-fhirpath-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Key FHIRPath Constraints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-ai-powered-medical-coding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. AI-Powered Medical Coding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-fhir-store-configuration-gcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. FHIR Store Configuration (GCP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -480,197 +632,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HL7v2 Mapping
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HL7v2 Mapping
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#hl7v2-data-dictionary-field-mapping" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        HL7v2 Data Dictionary &amp; Field Mapping
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="HL7v2 Data Dictionary &amp; Field Mapping">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-pid-segment-patient-identification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. PID Segment (Patient Identification)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-nk1-segment-next-of-kin-associated-parties" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. NK1 Segment (Next of Kin / Associated Parties)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-pv1-segment-patient-visit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. PV1 Segment (Patient Visit)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-dg1-segment-diagnosis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. DG1 Segment (Diagnosis)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-obx-segment-observationresult-vitals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. OBX Segment (Observation/Result - Vitals)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-rxa-segment-pharmacytreatment-administration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. RXA Segment (Pharmacy/Treatment Administration)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-al1-segment-patient-allergy-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. AL1 Segment (Patient Allergy Information)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-mapping-architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data Mapping Architecture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exchange-logic-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exchange Logic Flow
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -948,7 +909,7 @@
   <span class="md-ellipsis">
     
   
-    Healthcare API
+    FHIR Store Configuration
   
 
     
@@ -1052,22 +1013,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hl7v2-data-dictionary-field-mapping" class="md-nav__link">
+  <a href="#1-bundle-types" class="md-nav__link">
     <span class="md-ellipsis">
       
-        HL7v2 Data Dictionary &amp; Field Mapping
+        1. Bundle Types
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="HL7v2 Data Dictionary &amp; Field Mapping">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-delta-sync-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Delta Sync Logic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fhir-resource-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. FHIR Resource Mapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. FHIR Resource Mapping">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-pid-segment-patient-identification" class="md-nav__link">
+  <a href="#rda-paciente-bundle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. PID Segment (Patient Identification)
+        RDA-Paciente Bundle
       
     </span>
   </a>
@@ -1075,65 +1058,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-nk1-segment-next-of-kin-associated-parties" class="md-nav__link">
+  <a href="#rda-consulta-bundle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. NK1 Segment (Next of Kin / Associated Parties)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-pv1-segment-patient-visit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. PV1 Segment (Patient Visit)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-dg1-segment-diagnosis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. DG1 Segment (Diagnosis)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-obx-segment-observationresult-vitals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. OBX Segment (Observation/Result - Vitals)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-rxa-segment-pharmacytreatment-administration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. RXA Segment (Pharmacy/Treatment Administration)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-al1-segment-patient-allergy-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. AL1 Segment (Patient Allergy Information)
+        RDA-Consulta Bundle
       
     </span>
   </a>
@@ -1146,10 +1074,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-mapping-architecture" class="md-nav__link">
+  <a href="#4-terminology-systems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data Mapping Architecture
+        4. Terminology Systems
       
     </span>
   </a>
@@ -1157,10 +1085,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exchange-logic-flow" class="md-nav__link">
+  <a href="#5-key-fhirpath-constraints" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exchange Logic Flow
+        5. Key FHIRPath Constraints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-ai-powered-medical-coding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. AI-Powered Medical Coding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-fhir-store-configuration-gcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. FHIR Store Configuration (GCP)
       
     </span>
   </a>
@@ -1187,120 +1137,219 @@
   
 
 
-<h1 id="hl7v2-data-mapping-and-exchange-logic">HL7v2 Data Mapping and Exchange Logic</h1>
-<p>This document details the architectural data mapping between our internal JSON structures (originating from the offline-first mobile app) and the international HL7v2 standard segments. </p>
-<p>The transformation is handled strictly by the <code>hl7_service.py</code> component before transmission to the Google Cloud Healthcare API.</p>
-<h2 id="hl7v2-data-dictionary-field-mapping">HL7v2 Data Dictionary &amp; Field Mapping</h2>
-<h3 id="1-pid-segment-patient-identification">1. PID Segment (Patient Identification)</h3>
-<p>Maps core demographic information.
-* <strong>PID-3 (Patient Identifier List):</strong> Mapped directly to our internal <code>patientId</code> (UUID).
-* <strong>PID-5 (Patient Name):</strong> * <code>PID-5.1</code>: Family Name (<code>patientInfo.lastName</code>)
-  * <code>PID-5.2</code>: Given Name (<code>patientInfo.firstName</code>)
-* <strong>PID-7 (Date/Time of Birth):</strong> Formatted as YYYYMMDD from <code>patientInfo.dob</code>.
-* <strong>PID-8 (Administrative Sex):</strong> Mapped from <code>patientInfo.gender</code> (M, F, U).
-* <strong>PID-11 (Patient Address):</strong>
-  * <code>PID-11.1</code>: Street Address (<code>patientInfo.address.street</code>)
-  * <code>PID-11.3</code>: City (<code>patientInfo.address.city</code>)
-  * <code>PID-11.4</code>: State or Province (<code>patientInfo.address.state</code>)
-  * <code>PID-11.5</code>: Zip or Postal Code (<code>patientInfo.address.zipCode</code>)
-  * <code>PID-11.6</code>: Country (<code>patientInfo.address.country</code>)</p>
-<h3 id="2-nk1-segment-next-of-kin-associated-parties">2. NK1 Segment (Next of Kin / Associated Parties)</h3>
-<p>Maps the legal guardian information, crucial for pediatric patients.
-* <strong>NK1-2 (Name):</strong> Guardian's full name (<code>guardianInfo.name</code>).
-* <strong>NK1-3 (Relationship):</strong> E.g., Mother, Father, Aunt (<code>guardianInfo.relationship</code>).
-* <strong>NK1-5 (Phone Number):</strong> Contact number (<code>guardianInfo.phone</code>).</p>
-<h3 id="3-pv1-segment-patient-visit">3. PV1 Segment (Patient Visit)</h3>
-<p>Maps the episodic data of the medical encounter.
-* <strong>PV1-3 (Assigned Patient Location):</strong> Where the encounter took place (<code>medicalHistory[].location</code>).
-* <strong>PV1-7 (Attending Doctor):</strong> Name of the physician (<code>medicalHistory[].physician</code>).
-* <strong>PV1-44 (Admit Date/Time):</strong> Date of the consultation (<code>medicalHistory[].date</code>).</p>
-<h3 id="4-dg1-segment-diagnosis">4. DG1 Segment (Diagnosis)</h3>
-<p>Maps the clinical diagnoses extracted via NLP or manual input.
-* <strong>DG1-3 (Diagnosis Code - ICD-10):</strong>
-  * <code>DG1-3.1</code>: The actual ICD-10 Code (<code>diagnosis[].icd10Code</code>).
-  * <code>DG1-3.2</code>: Text description of the diagnosis (<code>diagnosis[].description</code>).
-* <strong>DG1-6 (Diagnosis Type):</strong> Hardcoded to "F" for Final diagnosis.</p>
-<h3 id="5-obx-segment-observationresult-vitals">5. OBX Segment (Observation/Result - Vitals)</h3>
-<p>Used generically to map physical measurements.
-* <strong>OBX-3 (Observation Identifier):</strong> Uses international LOINC codes (e.g., <code>29463-7</code> for Weight, <code>8302-2</code> for Height).
-* <strong>OBX-5 (Observation Value):</strong> The float value (<code>patientInfo.weight</code> or <code>patientInfo.height</code>).
-* <strong>OBX-6 (Units):</strong> "kg" for weight, "cm" for height.</p>
-<h3 id="6-rxa-segment-pharmacytreatment-administration">6. RXA Segment (Pharmacy/Treatment Administration)</h3>
-<p>Maps the vaccination history.
-* <strong>RXA-3 &amp; RXA-4 (Date/Time Start &amp; End):</strong> Date the vaccine was administered (<code>vaccinationRecord[].date</code>).
-* <strong>RXA-5 (Administered Code):</strong> Uses CVX codes (<code>vaccineCode</code>) and the vaccine's text name (<code>vaccineName</code>).
-* <strong>RXA-6 (Administered Amount):</strong> Number of doses (<code>vaccinationRecord[].dose</code>).
-* <strong>RXA-10 (Administering Provider):</strong> Who applied the vaccine (<code>vaccinationRecord[].administratedBy</code>).</p>
-<h3 id="7-al1-segment-patient-allergy-information">7. AL1 Segment (Patient Allergy Information)</h3>
-<p>Maps known allergies and adverse reactions.
-* <strong>AL1-3 (Allergen Code/Description):</strong> General description of the allergen (<code>allergies[].allergen</code>).
-* <strong>AL1-5 (Allergy Reaction):</strong> The clinical manifestation (e.g., "Habones", "Choque anafiláctico") mapped from the <code>AllergyReactionEnum</code> (<code>allergies[].reaction</code>).</p>
-<h2 id="data-mapping-architecture">Data Mapping Architecture</h2>
-<pre class="mermaid"><code>flowchart LR
-    %% Definición de estilos
-    classDef json fill:#1e1e1e,stroke:#00bcd4,stroke-width:2px,color:#fff
-    classDef engine fill:#37474f,stroke:#ff9800,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
-    classDef hl7 fill:#1e1e1e,stroke:#4caf50,stroke-width:2px,color:#fff
-
-    subgraph Origin ["📱 Incoming JSON"]
-        id["`patientId&lt;br/&gt;(UUID)`"]:::json
-        demo["`patientInfo&lt;br/&gt;(Name, DOB, Address)`"]:::json
-        guard["`guardianInfo&lt;br/&gt;(Name, Phone, Rel)`"]:::json
-        visit["`medicalHistory[]&lt;br/&gt;(Date, Physician)`"]:::json
-        diag["`diagnosis[]&lt;br/&gt;(ICD-10, Desc)`"]:::json
-        vitals["`weight / height&lt;br/&gt;(Floats)`"]:::json
-        vac["`vaccinationRecord[]&lt;br/&gt;(CVX, Dose)`"]:::json
-        all["`allergies[]&lt;br/&gt;(Allergen, Reaction)`"]:::json
-    end
-
-    subgraph Engine ["⚙️ hl7_service.py Mapping"]
-        m_id["PID-3"]:::engine
-        m_demo["PID-5, 7, 8, 11"]:::engine
-        m_guard["NK1-2, 3, 5"]:::engine
-        m_visit["PV1-3, 7, 44"]:::engine
-        m_diag["DG1-3.1, 3.2"]:::engine
-        m_vitals["OBX-3, OBX-5"]:::engine
-        m_vac["RXA-3, 5, 6"]:::engine
-        m_all["AL1-3, AL1-5"]:::engine
-    end
-
-    subgraph Dest ["🏥 Outgoing HL7v2"]
-        MSH["`MSH&lt;br/&gt;(Message Header)`"]:::hl7
-        PID["`PID&lt;br/&gt;(Patient ID)`"]:::hl7
-        NK1["`NK1&lt;br/&gt;(Next of Kin)`"]:::hl7
-        PV1["`PV1&lt;br/&gt;(Patient Visit)`"]:::hl7
-        DG1["`DG1&lt;br/&gt;(Diagnosis)`"]:::hl7
-        OBX["`OBX&lt;br/&gt;(Vitals)`"]:::hl7
-        RXA["`RXA&lt;br/&gt;(Vaccine)`"]:::hl7
-        AL1["`AL1&lt;br/&gt;(Allergy)`"]:::hl7
-    end
-
-    %% Conexiones directas que auto-organizan las columnas
-    id --&gt; m_id --&gt; PID
-    demo --&gt; m_demo --&gt; PID
-    guard --&gt; m_guard --&gt; NK1
-    visit --&gt; m_visit --&gt; PV1
-    diag --&gt; m_diag --&gt; DG1
-    vitals --&gt; m_vitals --&gt; OBX
-    vac --&gt; m_vac --&gt; RXA
-    all --&gt; m_all --&gt; AL1
-
-    %% MSH Metadata (Conexión global)
-    Engine -. "Auto-generated" .-&gt; MSH
-</code></pre>
-<h2 id="exchange-logic-flow">Exchange Logic Flow</h2>
+<h1 id="fhir-rda-architecture-resolution-18882025-compliance">FHIR RDA Architecture — Resolution 1888/2025 Compliance</h1>
+<p>This document describes the FHIR R4 interoperability layer that generates <strong>Resumen Digital de Atención en Salud (RDA)</strong> bundles in compliance with Colombia's Resolution 1888 of 2025, which mandates the Interoperabilidad de la Historia Clínica Electrónica (IHCE).</p>
+<p>Implementation Guide: <a href="https://vulcano.ihcecol.gov.co/guia/">vulcano.ihcecol.gov.co/guia</a></p>
+<hr />
+<h2 id="1-bundle-types">1. Bundle Types</h2>
+<p>The system generates two types of FHIR R4 Bundles, both of type <code>document</code>:</p>
+<p><strong>RDA-Paciente</strong> — Patient self-reported health background. Contains allergies, family history, and chronic conditions declared by the patient or their guardian. Generated once and refreshed when background data changes.</p>
+<p><strong>RDA-Consulta</strong> — Ambulatory encounter clinical data. Contains the encounter metadata, diagnoses (ICD-10/11), allergies identified during the visit, risk factors, and discharge disposition. One bundle per medical visit.</p>
+<hr />
+<h2 id="2-delta-sync-logic">2. Delta Sync Logic</h2>
+<p>The system tracks which bundles have already been sent to the FHIR Store using two database columns on the <code>patients</code> table:</p>
+<ul>
+<li><code>synced_visit_count</code> (Integer): Number of <code>medicalHistory</code> entries already sent.</li>
+<li><code>rda_paciente_sent</code> (Boolean): Whether the RDA-Paciente bundle has been sent.</li>
+</ul>
+<p>On each <code>/sync</code> call:</p>
 <ol>
-<li><strong>Ingestion:</strong> The FastAPI backend receives the strongly-typed Pydantic payload (<code>PatientFullRecord</code>).</li>
-<li><strong>Translation:</strong> The <code>hl7_service.py</code> initiates the <code>hl7apy</code> library to instantiate an empty message.</li>
-<li><strong>Mapping:</strong> </li>
-<li>Static demographic data is mapped to <code>PID</code> and <code>NK1</code>.</li>
-<li>
-<p>Dynamic arrays (visits, vaccines, allergies) are iterated over, dynamically appending <code>PV1</code>, <code>DG1</code>, <code>RXA</code>, and <code>AL1</code> segments.</p>
-</li>
-<li>
-<p><strong>Transmission:</strong> The constructed HL7 string is Base64 encoded and securely transmitted via REST to the Google Cloud Healthcare API HL7v2 Store.</p>
-</li>
+<li><strong>RDA-Paciente</strong> is regenerated only if it hasn't been sent yet, or if there are new visits (which may imply updated background data).</li>
+<li><strong>RDA-Consulta</strong> bundles are generated only for visits at index <code>&gt;= synced_visit_count</code>.</li>
+<li>Tracking columns are updated <strong>only after successful GCP upload</strong> — if GCP fails, the next sync retries automatically.</li>
 </ol>
+<hr />
+<h2 id="3-fhir-resource-mapping">3. FHIR Resource Mapping</h2>
+<h3 id="rda-paciente-bundle">RDA-Paciente Bundle</h3>
+<table>
+<thead>
+<tr>
+<th>FHIR Resource</th>
+<th>Source</th>
+<th>Profile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Patient</td>
+<td><code>patientInfo</code> + <code>identification</code></td>
+<td>PatientRDA</td>
+</tr>
+<tr>
+<td>AllergyIntolerance</td>
+<td><code>allergies[]</code></td>
+<td>AllergyIntoleranceDeclaredRDA</td>
+</tr>
+<tr>
+<td>FamilyMemberHistory</td>
+<td><code>backgroundHistory.familyHistory[]</code></td>
+<td>FamilyMemberHistoryRDA</td>
+</tr>
+<tr>
+<td>Condition</td>
+<td><code>backgroundHistory.chronicConditions</code></td>
+<td>ConditionDeclaredRDA</td>
+</tr>
+<tr>
+<td>Composition</td>
+<td>Wraps all sections</td>
+<td>CompositionPatientRDA</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rda-consulta-bundle">RDA-Consulta Bundle</h3>
+<table>
+<thead>
+<tr>
+<th>FHIR Resource</th>
+<th>Source</th>
+<th>Profile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Patient</td>
+<td>Same as RDA-Paciente</td>
+<td>PatientRDA</td>
+</tr>
+<tr>
+<td>Encounter</td>
+<td><code>medicalHistory[n]</code> metadata</td>
+<td>EncounterAmbulatoryRDA</td>
+</tr>
+<tr>
+<td>Condition</td>
+<td><code>medicalHistory[n].diagnosis[]</code></td>
+<td>ConditionRDA</td>
+</tr>
+<tr>
+<td>AllergyIntolerance</td>
+<td><code>allergies[]</code> (encounter-linked)</td>
+<td>AllergyIntoleranceRDA</td>
+</tr>
+<tr>
+<td>Organization (IPS)</td>
+<td><code>medicalHistory[n].provider</code></td>
+<td>OrganizationIPS</td>
+</tr>
+<tr>
+<td>Organization (EAPB)</td>
+<td><code>medicalHistory[n].payer</code></td>
+<td>OrganizationEAPB</td>
+</tr>
+<tr>
+<td>Practitioner</td>
+<td><code>medicalHistory[n].practitioner</code></td>
+<td>PractitionerRDA</td>
+</tr>
+<tr>
+<td>RiskAssessment</td>
+<td><code>medicalHistory[n].riskFactors[]</code></td>
+<td>RiskFactorRDA</td>
+</tr>
+<tr>
+<td>Composition</td>
+<td>Wraps all sections</td>
+<td>CompositionAmbulatoryRDA</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-terminology-systems">4. Terminology Systems</h2>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>URI</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ICD-10 (WHO)</td>
+<td><code>http://hl7.org/fhir/sid/icd-10</code></td>
+<td>Diagnosis coding</td>
+</tr>
+<tr>
+<td>ICD-11 (WHO)</td>
+<td><code>http://id.who.int/icd/release/11/mms</code></td>
+<td>Diagnosis coding (optional)</td>
+</tr>
+<tr>
+<td>SISPRO</td>
+<td><code>https://www.sispro.gov.co/terminologias/...</code></td>
+<td>Modality, service group, environment, diagnosis type, allergy category, risk factors</td>
+</tr>
+<tr>
+<td>DIVIPOLA</td>
+<td>DANE codes</td>
+<td>Municipality identification</td>
+</tr>
+<tr>
+<td>LOINC</td>
+<td><code>http://loinc.org</code></td>
+<td>Composition section codes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-key-fhirpath-constraints">5. Key FHIRPath Constraints</h2>
+<p>The Google Cloud Healthcare API FHIR Store validates these constraints before accepting bundles:</p>
+<ol>
+<li><strong>Bundle identifier</strong>: Document bundles must have <code>identifier.system</code> and <code>identifier.value</code>.</li>
+<li><strong>Composition sections</strong>: Each section must have <code>text</code>, <code>entry</code> (non-empty), or nested <code>section</code>. Empty sections use <code>emptyReason</code> + a minimal <code>text</code> div.</li>
+<li><strong>Referential integrity</strong>: All <code>reference</code> fields must resolve to an entry within the bundle.</li>
+</ol>
+<hr />
+<h2 id="6-ai-powered-medical-coding">6. AI-Powered Medical Coding</h2>
+<p>Two LLM tasks run during <code>/sync</code> before FHIR bundle generation:</p>
+<p><strong>Diagnosis extraction</strong> (<code>extract_diagnoses</code>): Analyzes free-text <code>clinicalEvaluation</code> fields to produce ICD-10/11 codes. The <code>diagnosisType</code> is set by the physician at the encounter level, not by the LLM.</p>
+<p><strong>Family history coding</strong> (<code>code_family_history_item</code>): Maps <code>conditionDescription</code> free text (e.g., "Diabetes") to ICD-10/11 codes. Only runs for items that don't already have codes.</p>
+<p>Both tasks use Gemini via Vertex AI with <code>temperature=0.0</code> for deterministic output and structured JSON response schemas.</p>
+<hr />
+<h2 id="7-fhir-store-configuration-gcp">7. FHIR Store Configuration (GCP)</h2>
+<p>Current setup in <code>hwb-fhir-store</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Version</td>
+<td>R4</td>
+<td>Required by IHCE Implementation Guide</td>
+</tr>
+<tr>
+<td>Referential integrity</td>
+<td>Enabled</td>
+<td>Prevents inconsistent references</td>
+</tr>
+<tr>
+<td>Resource versioning</td>
+<td>Enabled</td>
+<td>Maintains audit trail per Res. 1888 Art. 6</td>
+</tr>
+<tr>
+<td>Strict search</td>
+<td>Disabled</td>
+<td>Lenient mode for development</td>
+</tr>
+<tr>
+<td>Complex reference analysis</td>
+<td>Enabled</td>
+<td>Needed for extensions with references</td>
+</tr>
+<tr>
+<td>Profile validation</td>
+<td>Disabled (pending IG import)</td>
+<td>Will enable after importing RDA profiles</td>
+</tr>
+</tbody>
+</table>
 
 
 

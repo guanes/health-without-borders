@@ -27,7 +27,7 @@
     
     
       
-        <title>Healthcare API - Health Without Borders - API Docs</title>
+        <title>FHIR Store Configuration - Health Without Borders - API Docs</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cloud-healthcare-api-hl7v2-configuration" class="md-skip">
+        <a href="#fhir-store-configuration-google-cloud-healthcare-api" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Healthcare API
+              FHIR Store Configuration
             
           </span>
         </div>
@@ -246,7 +246,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../architecture/hl7v2-strategy/" class="md-tabs__link">
+        <a href="../../architecture/fhir-rda/" class="md-tabs__link">
           
   
   
@@ -431,14 +431,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/hl7v2-strategy/" class="md-nav__link">
+      <a href="../../architecture/fhir-rda/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    HL7v2 Strategy
+    FHIR RDA Architecture
   
 
     
@@ -467,34 +467,6 @@
     
   
     AI & NLP Integration
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../architecture/hl7-mapping/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HL7v2 Mapping
   
 
     
@@ -794,7 +766,7 @@
   <span class="md-ellipsis">
     
   
-    Healthcare API
+    FHIR Store Configuration
   
 
     
@@ -812,7 +784,7 @@
   <span class="md-ellipsis">
     
   
-    Healthcare API
+    FHIR Store Configuration
   
 
     
@@ -836,17 +808,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#environment-variables-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ⚙️ Environment Variables Reference
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#1-architecture-overview" class="md-nav__link">
@@ -894,21 +855,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#23-create-the-pubsub-topic-event-driven-integration" class="md-nav__link">
+  <a href="#23-create-the-fhir-store" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3. Create the Pub/Sub Topic (Event-Driven Integration)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24-create-the-hl7v2-store" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.4. Create the HL7v2 Store
+        2.3. Create the FHIR Store
       
     </span>
   </a>
@@ -921,99 +871,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-access-control-iam" class="md-nav__link">
+  <a href="#3-store-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Access Control (IAM)
+        3. Store Configuration
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="3. Access Control (IAM)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-required-roles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.1. Required Roles
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32-assigning-roles-via-cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.2. Assigning Roles via CLI
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-message-ingestion-verification" class="md-nav__link">
+  <a href="#4-iam-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Message Ingestion &amp; Verification
+        4. IAM Configuration
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="4. Message Ingestion &amp; Verification">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-ingestion-endpoint-rest-api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.1. Ingestion Endpoint (REST API)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#42-base64-encoding-requirement" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.2. Base64 Encoding Requirement
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#43-manual-verification-curl" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.3. Manual Verification (cURL)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-operations-best-practices" class="md-nav__link">
+  <a href="#5-bundle-ingestion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Operations &amp; Best Practices
+        5. Bundle Ingestion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-future-profile-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Future: Profile Validation
       
     </span>
   </a>
@@ -1119,17 +1024,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#environment-variables-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ⚙️ Environment Variables Reference
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#1-architecture-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1175,21 +1069,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#23-create-the-pubsub-topic-event-driven-integration" class="md-nav__link">
+  <a href="#23-create-the-fhir-store" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3. Create the Pub/Sub Topic (Event-Driven Integration)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24-create-the-hl7v2-store" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.4. Create the HL7v2 Store
+        2.3. Create the FHIR Store
       
     </span>
   </a>
@@ -1202,99 +1085,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-access-control-iam" class="md-nav__link">
+  <a href="#3-store-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Access Control (IAM)
+        3. Store Configuration
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="3. Access Control (IAM)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-required-roles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.1. Required Roles
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32-assigning-roles-via-cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.2. Assigning Roles via CLI
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-message-ingestion-verification" class="md-nav__link">
+  <a href="#4-iam-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Message Ingestion &amp; Verification
+        4. IAM Configuration
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="4. Message Ingestion &amp; Verification">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-ingestion-endpoint-rest-api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.1. Ingestion Endpoint (REST API)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#42-base64-encoding-requirement" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.2. Base64 Encoding Requirement
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#43-manual-verification-curl" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.3. Manual Verification (cURL)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-operations-best-practices" class="md-nav__link">
+  <a href="#5-bundle-ingestion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Operations &amp; Best Practices
+        5. Bundle Ingestion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-future-profile-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Future: Profile Validation
       
     </span>
   </a>
@@ -1321,117 +1159,148 @@
   
 
 
-<h1 id="cloud-healthcare-api-hl7v2-configuration">Cloud Healthcare API &amp; HL7v2 Configuration</h1>
-<p>This document details the configuration of the <strong>Google Cloud Healthcare API</strong>, specifically the HL7v2 Store used to ingest, store, and manage clinical messages from external hospital systems (e.g., SIP/EHR) in the <strong>Health Without Borders</strong> project.</p>
-<h2 id="environment-variables-reference">⚙️ Environment Variables Reference</h2>
-<p>Throughout this guide, replace the following placeholders <code>&lt;...&gt;</code> with your specific project details:</p>
-<ul>
-<li><code>&lt;GCP_PROJECT_ID&gt;</code>: Your Google Cloud Project ID.</li>
-<li><code>&lt;REGION&gt;</code>: The GCP region for your resources (e.g., <code>us-central1</code>).</li>
-<li><code>&lt;DATASET_NAME&gt;</code>: The name of your Healthcare Dataset (e.g., <code>hwb-dataset</code>).</li>
-<li><code>&lt;HL7_STORE_NAME&gt;</code>: The specific HL7v2 data store (e.g., <code>hwb-hl7-store</code>).</li>
-<li><code>&lt;PUBSUB_TOPIC&gt;</code>: The topic name for real-time notifications (e.g., <code>hl7-ingestion-topic</code>).</li>
-<li><code>&lt;SERVICE_ACCOUNT_EMAIL&gt;</code>: The identity running the backend service.</li>
-</ul>
+<h1 id="fhir-store-configuration-google-cloud-healthcare-api">FHIR Store Configuration — Google Cloud Healthcare API</h1>
+<p>This document details the configuration of the <strong>Google Cloud Healthcare API FHIR Store</strong> used to ingest and manage RDA bundles (Resolution 1888/2025) in the Health Without Borders project.</p>
+<blockquote>
+<p><strong>Note:</strong> The current implementation uses GCP as the FHIR Store backend. A future abstraction layer will allow deploying with alternative backends (Azure FHIR, AWS HealthLake, HAPI FHIR) for open-source flexibility.</p>
+</blockquote>
 <hr />
 <h2 id="1-architecture-overview">1. Architecture Overview</h2>
-<p>The interoperability layer consists of a hierarchical structure hosted in Google Cloud, designed for compliance and event-driven processing:</p>
+<p>The interoperability layer uses a hierarchical structure in Google Cloud:</p>
 <ol>
-<li><strong>Dataset:</strong> A top-level container for all healthcare data (FHIR, HL7v2, DICOM) located in a specific region to enforce data residency laws.</li>
-<li><strong>HL7v2 Store:</strong> A specific data store within the dataset designed to ingest, parse, and validate HL7v2 pipe-delimited messages.</li>
-<li><strong>Pub/Sub (Optional but Recommended):</strong> A messaging queue that triggers asynchronous backend workflows whenever a new medical record is ingested.</li>
+<li><strong>Dataset</strong> (<code>hwb-dataset</code>): Top-level container in <code>us-central1</code> for data residency compliance.</li>
+<li><strong>FHIR Store</strong> (<code>hwb-fhir-store</code>): R4-compliant store that receives document bundles via POST.</li>
+<li><strong>Authentication</strong>: GCP Application Default Credentials with <code>roles/healthcare.fhirStoreEditor</code> scope.</li>
 </ol>
 <hr />
 <h2 id="2-resource-provisioning">2. Resource Provisioning</h2>
 <h3 id="21-enable-the-api">2.1. Enable the API</h3>
-<p>The Cloud Healthcare API must be enabled in your GCP project.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>healthcare.googleapis.com
 </code></pre></div>
 <h3 id="22-create-the-dataset">2.2. Create the Dataset</h3>
-<p>The dataset acts as the administrative boundary for compliance (HIPAA/GDPR) and data residency.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gcloud<span class="w"> </span>healthcare<span class="w"> </span>datasets<span class="w"> </span>create<span class="w"> </span>&lt;DATASET_NAME&gt;<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>--location<span class="o">=</span>&lt;REGION&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gcloud<span class="w"> </span>healthcare<span class="w"> </span>datasets<span class="w"> </span>create<span class="w"> </span>hwb-dataset<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>--location<span class="o">=</span>us-central1
 </code></pre></div>
-<h3 id="23-create-the-pubsub-topic-event-driven-integration">2.3. Create the Pub/Sub Topic (Event-Driven Integration)</h3>
-<p>To allow the backend to react to new messages instantly (without polling), create a notification topic.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gcloud<span class="w"> </span>pubsub<span class="w"> </span>topics<span class="w"> </span>create<span class="w"> </span>&lt;PUBSUB_TOPIC&gt;
-</code></pre></div>
-<h3 id="24-create-the-hl7v2-store">2.4. Create the HL7v2 Store</h3>
-<p>Configure the store to accept and parse messages, and link it to the Pub/Sub topic created above.</p>
-<ul>
-<li><strong>Parser Version:</strong> V3 (Recommended for strict validation and better compatibility).</li>
-<li><strong>Reject Duplicates:</strong> Disabled (allows updates/corrections to existing messages).</li>
-</ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gcloud<span class="w"> </span>healthcare<span class="w"> </span>hl7v2-stores<span class="w"> </span>create<span class="w"> </span>&lt;HL7_STORE_NAME&gt;<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>--dataset<span class="o">=</span>&lt;DATASET_NAME&gt;<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span>--location<span class="o">=</span>&lt;REGION&gt;<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span>--parser-version<span class="o">=</span>V3<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span>--pubsub-topic<span class="o">=</span>projects/&lt;GCP_PROJECT_ID&gt;/topics/&lt;PUBSUB_TOPIC&gt;
+<h3 id="23-create-the-fhir-store">2.3. Create the FHIR Store</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gcloud<span class="w"> </span>healthcare<span class="w"> </span>fhir-stores<span class="w"> </span>create<span class="w"> </span>hwb-fhir-store<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span>--dataset<span class="o">=</span>hwb-dataset<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span>--location<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span>--version<span class="o">=</span>R4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span>--enable-referential-integrity<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span>--enable-resource-versioning
 </code></pre></div>
 <hr />
-<h2 id="3-access-control-iam">3. Access Control (IAM)</h2>
-<p>To allow the Backend API (Cloud Run) or external ingestion scripts to write messages to the store, specific Identity and Access Management (IAM) roles are required.</p>
-<h3 id="31-required-roles">3.1. Required Roles</h3>
-<p>The identity running the ingestion process must have the following roles:</p>
+<h2 id="3-store-configuration">3. Store Configuration</h2>
 <table>
 <thead>
 <tr>
-<th>Role Name</th>
-<th>Role ID</th>
-<th>Purpose</th>
+<th>Setting</th>
+<th>Value</th>
+<th>Rationale</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Healthcare HL7v2 Store Editor</strong></td>
-<td><code>roles/healthcare.hl7V2StoreEditor</code></td>
-<td>Allows creating, ingesting, and deleting HL7v2 messages.</td>
+<td>FHIR version</td>
+<td>R4</td>
+<td>Required by IHCE IG</td>
 </tr>
 <tr>
-<td><strong>Healthcare Dataset Viewer</strong></td>
-<td><code>roles/healthcare.datasetViewer</code></td>
-<td>Allows listing datasets and stores to verify their existence.</td>
+<td>Referential integrity</td>
+<td>Enabled</td>
+<td>Bundles contain internal references that must resolve</td>
+</tr>
+<tr>
+<td>Resource versioning</td>
+<td>Enabled</td>
+<td>RDA-Paciente is re-sent on updates; versioning preserves history</td>
+</tr>
+<tr>
+<td>Strict search</td>
+<td>Disabled</td>
+<td>Lenient mode ignores unknown search parameters during development</td>
+</tr>
+<tr>
+<td>Complex reference analysis</td>
+<td>Enabled</td>
+<td>Extensions use references in complex data types</td>
+</tr>
+<tr>
+<td>Profile validation</td>
+<td>Disabled</td>
+<td>Enable after importing the RDA Implementation Guide profiles</td>
+</tr>
+<tr>
+<td>BigQuery streaming</td>
+<td>Not configured</td>
+<td>Can be enabled later for analytics dashboards</td>
+</tr>
+<tr>
+<td>Pub/Sub notifications</td>
+<td>Not configured</td>
+<td>Can be enabled for event-driven workflows</td>
 </tr>
 </tbody>
 </table>
-<h3 id="32-assigning-roles-via-cli">3.2. Assigning Roles via CLI</h3>
-<p>Bind the necessary permissions to your service account:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>&lt;GCP_PROJECT_ID&gt;<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:&lt;SERVICE_ACCOUNT_EMAIL&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/healthcare.hl7V2StoreEditor&quot;</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>&lt;GCP_PROJECT_ID&gt;<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:&lt;SERVICE_ACCOUNT_EMAIL&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/healthcare.datasetViewer&quot;</span>
+<hr />
+<h2 id="4-iam-configuration">4. IAM Configuration</h2>
+<p>The backend authenticates using a service account with minimal permissions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gcloud<span class="w"> </span>healthcare<span class="w"> </span>fhir-stores<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>hwb-fhir-store<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>--dataset<span class="o">=</span>hwb-dataset<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span>--location<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:hwb-backend@PROJECT_ID.iam.gserviceaccount.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/healthcare.fhirResourceEditor&quot;</span>
 </code></pre></div>
 <hr />
-<h2 id="4-message-ingestion-verification">4. Message Ingestion &amp; Verification</h2>
-<h3 id="41-ingestion-endpoint-rest-api">4.1. Ingestion Endpoint (REST API)</h3>
-<p>The standard REST endpoint for creating (ingesting) a message follows this structure:</p>
-<p><code>POST https://healthcare.googleapis.com/v1/projects/&lt;GCP_PROJECT_ID&gt;/locations/&lt;REGION&gt;/datasets/&lt;DATASET_NAME&gt;/hl7V2Stores/&lt;HL7_STORE_NAME&gt;/messages</code></p>
-<h3 id="42-base64-encoding-requirement">4.2. Base64 Encoding Requirement</h3>
-<p>Unlike standard REST APIs, the Healthcare API requires the raw HL7 message content to be <strong>Base64 encoded</strong> within the JSON payload.</p>
-<p><strong>Example Payload (<code>message.json</code>):</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TVnDiA... (Base64 encoded MSH segment)...&quot;</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
+<h2 id="5-bundle-ingestion">5. Bundle Ingestion</h2>
+<p>RDA bundles are sent as <code>POST</code> requests to the FHIR Store's Bundle endpoint:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>POST https://healthcare.googleapis.com/v1/projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{store}/fhir/Bundle
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Content-Type: application/fhir+json; charset=utf-8
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Authorization: Bearer {token}
 </code></pre></div>
-<h3 id="43-manual-verification-curl">4.3. Manual Verification (cURL)</h3>
-<p>To list ingested messages and verify connectivity from a local terminal authorized via <code>gcloud</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="k">$(</span>gcloud<span class="w"> </span>auth<span class="w"> </span>print-access-token<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="s2">&quot;[https://healthcare.googleapis.com/v1/projects/](https://healthcare.googleapis.com/v1/projects/)&lt;GCP_PROJECT_ID&gt;/locations/&lt;REGION&gt;/datasets/&lt;DATASET_NAME&gt;/hl7V2Stores/&lt;HL7_STORE_NAME&gt;/messages?view=FULL&quot;</span>
-</code></pre></div>
+<p>Each bundle is a FHIR <code>document</code> type with a <code>Composition</code> as the first entry. The store validates FHIRPath constraints before accepting the bundle.</p>
 <hr />
-<h2 id="5-operations-best-practices">5. Operations &amp; Best Practices</h2>
-<ul>
-<li><strong>Monitoring Dashboard:</strong> Message counts, ingestion errors, and latency can be monitored visually in the <a href="https://console.cloud.google.com/healthcare/browser">Cloud Healthcare Console</a>.</li>
-<li><strong>Data Export:</strong> Raw messages can be periodically exported to <strong>Google Cloud Storage (GCS)</strong> buckets via the console for long-term auditing, backup, or bulk analysis.</li>
-<li><strong>Audit Compliance:</strong> Access logs (who viewed or ingested a message) are automatically generated by Google Cloud Audit Logging. Ensure Data Access audit logs are enabled in your project's IAM settings.</li>
-<li><strong>Error Handling:</strong> If an HL7 message fails validation (e.g., missing mandatory MSH segments), the API will return a <code>400 Bad Request</code>. Ensure your upstream systems are capturing and alerting on these rejections.</li>
-</ul>
+<h2 id="6-environment-variables">6. Environment Variables</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GCP_PROJECT_ID</code></td>
+<td>Google Cloud project ID</td>
+<td><code>migrants-unicef</code></td>
+</tr>
+<tr>
+<td><code>GCP_LOCATION</code></td>
+<td>Dataset region</td>
+<td><code>us-central1</code></td>
+</tr>
+<tr>
+<td><code>GCP_DATASET_ID</code></td>
+<td>Healthcare dataset name</td>
+<td><code>hwb-dataset</code></td>
+</tr>
+<tr>
+<td><code>GCP_FHIR_STORE_ID</code></td>
+<td>FHIR store name</td>
+<td><code>hwb-fhir-store</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-future-profile-validation">7. Future: Profile Validation</h2>
+<p>To enable validation against the IHCE Implementation Guide profiles:</p>
+<ol>
+<li>Package the StructureDefinition, ValueSet, and CodeSystem resources from the IG as a FHIR <code>transaction</code> bundle.</li>
+<li>Import the bundle into the FHIR Store.</li>
+<li>Enable profile validation, required field validation, reference type validation, and FHIRPath validation in the store settings.</li>
+</ol>
+<p>This will cause the store to reject bundles that don't conform to the RDA profiles.</p>
 
 
 
